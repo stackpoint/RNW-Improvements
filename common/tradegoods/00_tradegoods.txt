@@ -385,7 +385,7 @@ fur = {
 salt = {
 	color = { 0.999 0.999 0.999 }
 	modifier = {
-		land_maintenance_modifier = -0.10
+		land_maintenance_modifier = -0.05
 	}
 	province = {
 		local_defensiveness = 0.15
@@ -607,6 +607,7 @@ gold = {
 			NOT = { region = peru_region }
 			NOT = { region = upper_peru_region }
 			NOT = { region = mexico_region }
+			NOT = { region = rio_grande_region }
 			NOT = { region = central_america_region }
 			NOT = { area = goias_area }
 			NOT = { area = pontal_area }
@@ -628,6 +629,7 @@ gold = {
 			NOT = { region = east_siberia_region }
 			NOT = { region = australia_region }
 			NOT = { region = south_africa_region }
+			NOT = { region = central_africa_region }
 		}
 		modifier = {
 			factor = 0
@@ -674,6 +676,7 @@ gold = {
 				province_id = 857		# Guichichil
 				province_id = 858		# Tamaulipas
 				province_id = 2615		# Guamares
+				province_id = 4781		# Transvaal (Johannesburg mines)
 			}
 		}
 		modifier = {
@@ -685,6 +688,15 @@ gold = {
 				area = ofaie_area
 				area = goias_area
 				area = pontal_area
+			}
+		}
+		modifier = {
+			factor = 2
+			FROM = {
+				OR = {
+					has_country_flag = por_bandeirantes_flag
+					colonial_parent = { has_country_flag = por_bandeirantes_flag }
+				}
 			}
 		}
 		modifier = {						#Added extra chance for Andean and Central American RNW nations		
@@ -731,6 +743,7 @@ iron = {
 			NOT = { area = maryland_area }
 			NOT = { area = ofaie_area }
 			NOT = { province_id = 18 }
+			is_random_new_world = no
 		}
 		modifier = {
 			factor = 1.2
@@ -776,6 +789,10 @@ slaves = {
 	}
 	chance = {
 		factor = 15
+		modifier = {
+			factor = 0
+			holy_order = dominican_order
+		}
 		modifier = {
 			factor = 0
 			area = newfoundland_area
@@ -1053,6 +1070,8 @@ spices = {
 			NOT = { region = deccan_region }
 			NOT = { region = bengal_region }
 			NOT = { region = coromandel_region }
+			NOT = { region = central_america_region }
+			NOT = { region = mexico_region }
 			NOT = { area = indian_ocean_islands_area }
 			NOT = { province_id = 1244 } # Tahiti
 		}
@@ -1165,6 +1184,7 @@ cotton = {
 			NOT = { region = southeast_america_region }
 			NOT = { region = carribeans_region }
 			NOT = { region = mississippi_region }
+			NOT = { region = rio_grande_region }
 			NOT = { region = egypt_region }
 			NOT = { region = hindusthan_region }
 			NOT = { region = bengal_region }
@@ -1272,6 +1292,7 @@ sugar = {
 			NOT = { region = carribeans_region }
 			NOT = { region = brazil_region }
 			NOT = { region = mexico_region }
+			NOT = { region = rio_grande_region }
 			NOT = { region = central_america_region }
 			NOT = { region = colombia_region }
 			NOT = { region = deccan_region }
@@ -1314,6 +1335,7 @@ tobacco = {
 			NOT = { region = la_plata_region }
 			NOT = { region = northeast_america_region }
 			NOT = { region = southeast_america_region }
+			NOT = { region = rio_grande_region }
 			NOT = { region = brazil_region }
 			NOT = { region = carribeans_region }
 			NOT = { area = appalachia_area }
@@ -1551,7 +1573,10 @@ livestock = {
 				has_terrain = glacier
 				has_terrain = marsh
 				has_terrain = jungle
-				has_terrain = coastline
+				AND = {
+					has_terrain = coastline
+					NOT = { province_id = 2002 }
+				}
 				has_terrain = hills
 				has_terrain = forest
 				has_terrain = woods
@@ -1580,6 +1605,10 @@ livestock = {
 				region = mississippi_region
 			}
 			NOT = { has_terrain = mountain }
+		}
+		modifier = { 
+			factor = 0.05
+			province_id = 2002
 		}
 		modifier = {
 			factor = 0.75
@@ -1769,6 +1798,15 @@ gems = {
 			NOT = { region = east_siberia_region }
 			NOT = { region = australia_region }
 			NOT = { region = south_africa_region }
+			NOT = { region = indonesia_region }
+			NOT = { region = moluccas_region }
+			NOT = { region = hindusthan_region }
+			NOT = { region = west_india_region }
+			NOT = { region = bengal_region }
+			NOT = { region = deccan_region }
+			NOT = { region = coromandel_region }
+			NOT = { region = indo_china_region }
+			NOT = { continent = oceania }
 		}
 		modifier = {
 			factor = 0

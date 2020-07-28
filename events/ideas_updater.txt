@@ -4,6 +4,7 @@ country_event = {
 	id = idea_updater.1
 	title = "idea_updater_1_title"
 	desc = "idea_updater_1_desc"
+	picture = INVENTION_eventPicture
 
 	is_triggered_only = yes
 	hidden = yes

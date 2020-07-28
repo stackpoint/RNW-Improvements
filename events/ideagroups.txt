@@ -25,16 +25,7 @@ country_event = {
 	option = {
 		name = "EVTOPTA803"
 		add_stability = -1
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_burghers
-			}
-			add_estate_loyalty = {
-				estate = estate_burghers
-				loyalty = -10
-			}
-		}
+		reduce_estate_burghers_loyalty_effect = yes
 	}
 }
 
@@ -49,6 +40,13 @@ country_event = {
 	
 	trigger = {
 		has_idea_group = aristocracy_ideas	
+		NOT = {
+			OR = {
+				government = tribal
+				government = native
+				has_reform = peasants_republic
+			}
+		}
 	}
 
 	mean_time_to_happen = {
@@ -143,16 +141,7 @@ country_event = {
 	option = {
 		name = "EVTOPTB813A"
 		add_meritocracy_effect = yes
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				loyalty = 10
-				estate = estate_nobles
-			}
-		}
+		add_estate_nobles_loyalty_effect = yes
 		trigger_switch = {
 			on_trigger = has_country_flag
 			natural_scientist_flag = {
@@ -281,16 +270,7 @@ country_event = {
 		ai_chance = {
 			factor = 50
 		}
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				estate = estate_nobles
-				loyalty = 10
-			}
-		}
+		add_estate_nobles_loyalty_effect = yes
 		random_owned_province = {
 			anti_tax_rebels = 1
 		}
@@ -302,7 +282,6 @@ country_event = {
 			factor = 50
 			modifier = {
 				factor = 0
-				has_dlc = "The Cossacks"
 				has_estate = estate_nobles
 				NOT = {
 					estate_loyalty = {
@@ -312,16 +291,7 @@ country_event = {
 				}
 			}
 		}
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				estate = estate_nobles
-				loyalty = -10
-			}
-		}
+		reduce_estate_nobles_loyalty_effect = yes
 		add_country_modifier = {
 			name = freesubjects_modifier
 			duration = 3650
@@ -349,16 +319,7 @@ country_event = {
 	
 	option = {
 		name = "EVTOPTA6338"
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				estate = estate_nobles
-				loyalty = 10
-			}
-		}
+		add_estate_nobles_loyalty_effect = yes
 		add_years_of_income = 1
 	}
 }
@@ -388,7 +349,6 @@ country_event = {
 			factor = 50
 			modifier = {
 				factor = 0
-				has_dlc = "The Cossacks"
 				has_estate = estate_burghers
 				NOT = {
 					estate_loyalty = {
@@ -398,16 +358,7 @@ country_event = {
 				}
 			}
 		}
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_burghers
-			}
-			add_estate_loyalty = {
-				estate = estate_burghers
-				loyalty = -10
-			}
-		}
+		reduce_estate_burghers_loyalty_effect = yes
 		add_country_modifier = {
 			name = "unhappy_merchants"
 			duration = 3650
@@ -424,16 +375,7 @@ country_event = {
 			name = "plutocracy_modifier"
 			duration = 3650
 		}
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_burghers
-			}
-			add_estate_loyalty = {
-				estate = estate_burghers
-				loyalty = 10
-			}
-		}
+		add_estate_burghers_loyalty_effect = yes
 	}
 } 
 
@@ -457,16 +399,7 @@ country_event = {
 
 	option = {
 		name = ideagroups.110.a
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				estate = estate_nobles
-				loyalty = 10
-			}
-		}
+		add_estate_nobles_loyalty_effect = yes
 		add_war_exhaustion = -2
 	}
 }
@@ -490,17 +423,13 @@ country_event = {
 
 	option = {
 		name = ideagroups.111.a
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				estate = estate_nobles
-				loyalty = 10
-			}
-		}
+		add_estate_nobles_loyalty_effect = yes
 		add_mil_power = 50
+	}
+	option = {
+		name = ideagroups.111.b
+		trigger = { has_dlc = "Cradle of Civilization" }
+		add_army_professionalism = 0.01
 	}
 }
 
@@ -551,16 +480,7 @@ country_event = {
 	
 	option = {
 		name = "EVTOPTB800A"
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				estate = estate_nobles
-				loyalty = -10
-			}
-		}
+		reduce_estate_nobles_loyalty_effect = yes
 		random_owned_province = {
 			noble_rebels = 1
 		}
@@ -601,7 +521,22 @@ country_event = {
 	
 	trigger = {
 		has_idea_group = plutocracy_ideas
-	}	
+	}
+	
+	immediate = {
+		check_if_non_state_advisor_effect = { #Hidden, must be followed by erase_advisor_flags_effect
+			chance_of_primary = 75 #Not percentages!
+			chance_of_tertiary = 5
+			chance_of_secondary = 25
+		}
+		hidden_effect = {
+			random_list = {
+				33 = { set_country_flag = treasurer_flag }
+				33 = { set_country_flag = master_of_mint_flag }
+				33 = { set_country_flag = trader_flag }
+			}
+		}
+	}
 
 	mean_time_to_happen = {
 		days = 1
@@ -610,10 +545,42 @@ country_event = {
 	option = {
 		name = "EVTOPTB802A"
 		add_meritocracy_effect = yes
-		random_list = {
-			10 = { define_advisor = { type = treasurer skill = 2 }  }
-			10 = { define_advisor = { type = trader skill = 2 }  }
-			10 = { define_advisor = { type = master_of_mint skill = 2 }  }
+		
+		trigger_switch = {
+			on_trigger = has_country_flag
+			treasurer_flag = {
+				generate_advisor_of_type_and_semi_random_religion_effect = {
+					advisor_type=treasurer
+					advisor_type_if_not_state=treasurer
+					skill = 2
+					discount=yes
+				}
+			}
+			master_of_mint_flag = {
+				generate_advisor_of_type_and_semi_random_religion_effect = {
+					advisor_type=master_of_mint
+					advisor_type_if_not_state=master_of_mint
+					skill = 2
+					discount=yes
+				}
+			}
+			trader_flag = {
+				generate_advisor_of_type_and_semi_random_religion_effect = {
+					advisor_type=trader
+					advisor_type_if_not_state=trader
+					skill = 2
+					discount=yes
+				}
+			}
+		}
+	}
+	after = {
+		erase_advisor_flags_effect = yes
+		trigger_switch = {
+			on_trigger = has_country_flag
+			treasurer_flag = { clr_country_flag = treasurer_flag }
+			master_of_mint_flag = { clr_country_flag = master_of_mint_flag }
+			trader_flag = { clr_country_flag = trader_flag }
 		}
 	}
 }
@@ -624,15 +591,30 @@ country_event = {
 	title = "EVTNAME6156"
 	desc = "EVTDESC6156"
 	picture = REFORM_eventPicture
+	goto = minority_religion_province
 	
 	is_triggered_only = yes
 	
 	trigger = {
 		has_idea_group = plutocracy_ideas
 		any_owned_province = {
-			NOT = { culture = ROOT }			
+			NOT = { culture = ROOT }
+			is_city = yes
+			is_state_core = root
 		}
-		
+	}
+
+	immediate = {
+		hidden_effect = {
+			random_owned_province = {
+				limit = {
+					NOT = { culture = ROOT }
+					is_city = yes
+					is_state_core = root
+				}
+				save_event_target_as = minority_religion_province
+			}
+		}
 	}
 
 	mean_time_to_happen = {
@@ -641,10 +623,7 @@ country_event = {
 
 	option = {
 		name = "EVTOPTA6156"
-		random_owned_province = {
-			limit = {
-				NOT = { culture = ROOT }			
-			}
+		event_target:minority_religion_province = {
 			add_province_modifier = {
 				name = "minority_prospers"
 				duration = 3650
@@ -676,16 +655,7 @@ country_event = {
 
 	option = {
 		name = "EVTOPTA6157"
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				estate = estate_nobles
-				loyalty = -10
-			}
-		}
+		reduce_estate_nobles_loyalty_effect = yes
 		random_owned_province = {
 			limit = {
 				culture = ROOT
@@ -763,11 +733,18 @@ country_event = {
 		name = "EVTOPTB817A"
 		if = {
 			limit = {
+				NOT = { has_completed_all_reforms_trigger = yes }
+				primitives = no
+			}
+			add_reform_progress_small_effect = yes
+		}
+		else_if = {
+			limit = {
 				corruption = 0.01
 			}
 			add_corruption = -1
 		}
-		if = {
+		else_if = {
 			limit = {
 				NOT = {
 					corruption = 0.01
@@ -799,16 +776,7 @@ country_event = {
 	
 	option = {
 		name = "EVTOPTA6302"
-			if = {
-				limit = {
-					has_dlc = "The Cossacks"
-					has_estate = estate_burghers
-				}
-				add_estate_loyalty = {
-					estate = estate_burghers
-					loyalty = 10
-				}
-			}
+			add_estate_burghers_loyalty_effect = yes
 			add_country_modifier = {
 			name = "happy_people"
 			duration = 3650
@@ -841,7 +809,6 @@ country_event = {
 			factor = 50
 			modifier = {
 				factor = 0
-				has_dlc = "The Cossacks"
 				has_estate = estate_nobles
 				NOT = {
 					estate_loyalty = {
@@ -852,16 +819,7 @@ country_event = {
 			}
 		}
 		add_stability = -1
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				estate = estate_nobles
-				loyalty = -10
-			}
-		}
+		reduce_estate_nobles_loyalty_effect = yes
 	}
 
 	option = {
@@ -874,16 +832,7 @@ country_event = {
 			name = serfdom_modifier
 			duration = 3650
 		}
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				estate = estate_nobles
-				loyalty = 10
-			}
-		}
+		add_estate_nobles_loyalty_effect = yes
 	}
 }
 
@@ -922,16 +871,7 @@ country_event = {
 
 	option = {
 		name = "EVTOPTA6340"
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_burghers
-			}
-			add_estate_loyalty = {
-				estate = estate_burghers
-				loyalty = 10
-			}
-		}
+		add_estate_burghers_loyalty_effect = yes
 		add_years_of_income = 0.25
 	}
 }	
@@ -957,16 +897,7 @@ country_event = {
 
 	option = {
 		name = "EVTOPTB6341"
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				estate = estate_nobles
-				loyalty = -10
-			}
-		}
+		reduce_estate_nobles_loyalty_effect = yes
 		add_country_modifier = {
 			name = "aristocracy_modifier"
 			duration = 3650
@@ -993,7 +924,9 @@ country_event = {
 		add_country_modifier = {
 			name = "mercenaries_to_the_standard"
 			duration = 3650
+			hidden = yes
 		}
+		custom_tooltip = generic_more_mercs_available_tt
 	}
 }
 
@@ -1014,16 +947,7 @@ country_event = {
 
 	option = {
 		name = ideagroups.213.a
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_burghers
-			}
-			add_estate_loyalty = {
-				estate = estate_burghers
-				loyalty = 10
-			}
-		}
+		add_estate_burghers_loyalty_effect = yes
 		add_country_modifier = {
 			name = "for_freedom"
 			duration = 3650
@@ -1047,16 +971,7 @@ country_event = {
 
 	option = {
 		name = ideagroups.214.a
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_burghers
-			}
-			add_estate_loyalty = {
-				estate = estate_burghers
-				loyalty = 10
-			}
-		}
+		add_estate_burghers_loyalty_effect = yes
 		add_country_modifier = {
 			name = "our_rights"
 			duration = 3650
@@ -1082,16 +997,7 @@ country_event = {
 	option = {
 		name = ideagroups.215.a
 		add_mercantilism = 2
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_burghers
-			}
-			add_estate_loyalty = {
-				estate = estate_burghers
-				loyalty = 15
-			}
-		}
+		add_estate_burghers_loyalty_effect = yes
 		add_corruption = 0.5
 	}
 }
@@ -1136,16 +1042,7 @@ country_event = {
 
 	option = {
 		name = ideagroups.217.a
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_dhimmi
-			}
-			add_estate_loyalty = {
-				estate = estate_dhimmi
-				loyalty = 10
-			}
-		}
+		add_estate_dhimmi_loyalty_effect = yes
 		add_country_modifier = {
 			name = "tolerance_for_all"
 			duration = 3650
@@ -1237,7 +1134,24 @@ country_event = {
 	
 	trigger = {
 		has_idea_group = innovativeness_ideas	
-	}		
+	}
+	
+	immediate = {
+		check_if_non_state_advisor_effect = { #Hidden scripted effect, is used by scripted effect and must always be cleared in after = { } using erase_advisor_flags_effect.
+			chance_of_primary = 85 #Not percentages!
+			chance_of_tertiary = 15
+			chance_of_secondary = 35
+		}
+		hidden_effect = {
+			random_list = {
+				20 = { set_country_flag = natural_scientist_flag }
+				20 = { set_country_flag = statesman_flag }
+				20 = { set_country_flag = treasurer_flag }
+				20 = { set_country_flag = naval_reformer_flag }
+				20 = { set_country_flag = army_reformer_flag }
+			}
+		}
+	}
 	
 	mean_time_to_happen = {
 		days = 1
@@ -1246,13 +1160,60 @@ country_event = {
 	option = {
 		name = "EVTOPTB820A"
 		add_meritocracy_effect = yes
-		random_list = {
-			10 = { create_advisor = natural_scientist }
-			10 = { create_advisor = statesman }
-			10 = { create_advisor = treasurer }
-			10 = { create_advisor = naval_reformer }
-			10 = { create_advisor = army_reformer }
-		}		
+		trigger_switch = {
+			on_trigger = has_country_flag
+			natural_scientist_flag = {
+				generate_advisor_of_type_and_semi_random_religion_effect = {
+					advisor_type=natural_scientist
+					advisor_type_if_not_state=natural_scientist
+					scaled_skill = yes
+					discount=yes
+				}
+			}
+			statesman_flag = {
+				generate_advisor_of_type_and_semi_random_religion_effect = {
+					advisor_type=statesman
+					advisor_type_if_not_state=statesman
+					scaled_skill = yes
+					discount=yes
+				}
+			}
+			treasurer_flag = {
+				generate_advisor_of_type_and_semi_random_religion_effect = {
+					advisor_type=treasurer
+					advisor_type_if_not_state=treasurer
+					scaled_skill = yes
+					discount=yes
+				}
+			}
+			naval_reformer_flag = {
+				generate_advisor_of_type_and_semi_random_religion_effect = {
+					advisor_type=naval_reformer
+					advisor_type_if_not_state=naval_reformer
+					scaled_skill = yes
+					discount=yes
+				}
+			}
+			army_reformer_flag = {
+				generate_advisor_of_type_and_semi_random_religion_effect = {
+					advisor_type=army_reformer
+					advisor_type_if_not_state=army_reformer
+					scaled_skill = yes
+					discount=yes
+				}
+			}
+		}
+	}
+	after = {
+		erase_advisor_flags_effect = yes
+		trigger_switch = {
+			on_trigger = has_country_flag
+			natural_scientist_flag = { clr_country_flag = natural_scientist_flag }
+			statesman_flag = { clr_country_flag = statesman_flag }
+			treasurer_flag = { clr_country_flag = treasurer_flag }
+			naval_reformer_flag = { clr_country_flag = naval_reformer_flag }
+			army_reformer_flag = { clr_country_flag = army_reformer_flag }
+		}
 	}
 }
 
@@ -1424,16 +1385,18 @@ country_event = {
 		name = ideagroups.308.a
 		if = {
 			limit = {
+				NOT = { has_completed_all_reforms_trigger = yes }
+				primitives = no
+			}
+			add_reform_progress_small_effect = yes
+		}
+		else_if = {
+			limit = {
 				corruption = 0.01
 			}
 			add_corruption = -1
 		}
-		if = {
-			limit = {
-				NOT = {
-					corruption = 0.01
-				}
-			}
+		else = {
 			add_adm_power = 50
 		}
 	}
@@ -1482,6 +1445,7 @@ country_event = {
 	option = {
 		name = ideagroups.310.a
 		add_mil_power = 50
+		add_army_professionalism = 0.01
 	}
 }
 
@@ -1501,8 +1465,8 @@ country_event = {
 	trigger = {
 		has_idea_group = religious_ideas
 		NOT = { religion = jewish } #Has no heretic religions
-		NOT = { government = papal_government }
-		NOT = { government = theocratic_government }
+		NOT = { has_reform = papacy_reform }
+		NOT = { has_reform = leading_clergy_reform }
 		OR = {
 			NOT = { religion = catholic }
 			AND = {
@@ -1740,15 +1704,27 @@ country_event = {
 		days = 1
 	}
 	
+	immediate = {
+		check_if_non_state_advisor_effect = { #Hidden, must be followed by erase_advisor_flags_effect
+			chance_of_primary = 100 #Not percentages!
+			chance_of_tertiary = 0
+			chance_of_secondary = 5
+		}
+	}
+	
 	option = {
 		name = "EVTOPTB823A"
 		add_piety = 0.05
 		add_meritocracy_effect = yes
-		define_advisor = {
-			type = theologian
+		generate_advisor_of_type_and_semi_random_religion_effect = {
+			advisor_type=theologian
+			advisor_type_if_not_state=theologian
 			skill = 2
-			discount = yes
+			discount=yes
 		}
+	}
+	after = {
+		erase_advisor_flags_effect = yes
 	}
 }
 
@@ -1774,16 +1750,7 @@ country_event = {
 		name = "EVTOPTA6195"
 		add_piety = 0.05
 		add_war_exhaustion = -2
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_church
-			}
-			add_estate_loyalty = {
-				estate = estate_church
-				loyalty = 10
-			}
-		}
+		add_estate_church_loyalty_effect = yes
 	}
 }
 
@@ -1800,6 +1767,11 @@ country_event = {
 		has_idea_group = religious_ideas
 		is_at_war = no
 		has_border_with_religious_enemy = yes
+		any_neighbor_country = {
+			NOT = { religion = ROOT }
+			NOT = { truce_with = ROOT }
+			NOT = { ROOT = { truce_with = prev } }
+		}
 		NOT = { had_recent_war = 5 }
 	}	
 
@@ -1812,6 +1784,8 @@ country_event = {
 			random_neighbor_country = {
 				limit = {
 					NOT = { religion = ROOT }
+					NOT = { truce_with = ROOT }
+					NOT = { ROOT = { truce_with = prev } }
 				}
 				save_event_target_as = infidel_neighbor
 			}
@@ -1860,16 +1834,7 @@ country_event = {
 		add_piety = 0.05
 		add_stability_or_adm_power = yes
 
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_church
-			}
-			add_estate_loyalty = {
-				estate = estate_church
-				loyalty = 10
-			}
-		}
+		add_estate_church_loyalty_effect = yes
 	}
 }
 
@@ -1885,6 +1850,10 @@ country_event = {
 	trigger = {
 		has_idea_group = religious_ideas
 		NOT = { has_country_modifier = religious_deviants }
+		OR = {
+			religion_group = christian
+			religion_group = muslim
+		}
 	}
 	
 	mean_time_to_happen = {
@@ -1897,7 +1866,6 @@ country_event = {
 			factor = 75
 			modifier = {
 				factor = 0
-				has_dlc = "The Cossacks"
 				has_estate = estate_church
 				NOT = {
 					estate_loyalty = {
@@ -1913,16 +1881,7 @@ country_event = {
 			name = "religious_deviants"
 			duration = 3650
 		}
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_church
-			}
-			add_estate_loyalty = {
-				estate = estate_church
-				loyalty = -10
-			}
-		}
+		reduce_estate_church_loyalty_effect = yes
 	}
 
 	option = {
@@ -1932,16 +1891,7 @@ country_event = {
 		}
 		add_piety = 0.15
 		add_stability = -1
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_church
-			}
-			add_estate_loyalty = {
-				estate = estate_church
-				loyalty = 10
-			}
-		}
+		add_estate_church_loyalty_effect = yes
 		
 	}
 }
@@ -1968,16 +1918,7 @@ country_event = {
 	option = {
 		name = "EVTOPTA6160"
 		add_piety = 0.15
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_church
-			}
-			add_estate_loyalty = {
-				estate = estate_church
-				loyalty = 10
-			}
-		}
+		add_estate_church_loyalty_effect = yes
 		add_country_modifier = {
 			name = "missionary_zeal"
 			duration = 3650
@@ -2100,16 +2041,7 @@ country_event = {
 		name = ideagroups.411.a
 		add_piety = 0.15
 		add_stability_or_adm_power = yes
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_church
-			}
-			add_estate_loyalty = {
-				estate = estate_church
-				loyalty = 10
-			}
-		}
+		add_estate_church_loyalty_effect = yes
 	}
 }
 
@@ -2136,16 +2068,7 @@ country_event = {
 		name = ideagroups.412.a
 		add_piety = 0.05
 		add_war_exhaustion = -2
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_church
-			}
-			add_estate_loyalty = {
-				estate = estate_church
-				loyalty = 10
-			}
-		}
+		add_estate_church_loyalty_effect = yes
 	}
 }
 
@@ -2237,7 +2160,7 @@ country_event = {
 	
 	trigger = {
 		has_idea_group = religious_ideas
-		NOT = { stability = 2 }
+		NOT = { stability = 1 }
 	}
 
 	mean_time_to_happen = {
@@ -2254,16 +2177,7 @@ country_event = {
 			}
 			add_corruption = -0.5
 		}
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_church
-			}
-			add_estate_loyalty = {
-				estate = estate_church
-				loyalty = 10
-			}
-		}
+		add_estate_church_loyalty_effect = yes
 	}
 }
 
@@ -2289,16 +2203,7 @@ country_event = {
 		name = ideagroups.416.a
 		add_piety = 0.05
 		add_prestige = 10
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_church
-			}
-			add_estate_loyalty = {
-				estate = estate_church
-				loyalty = 10
-			}
-		}
+		add_estate_church_loyalty_effect = yes
 	}
 }
  
@@ -2328,16 +2233,7 @@ country_event = {
 			name = "love_of_devoted"
 			duration = 3650
 		}
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_church
-			}
-			add_estate_loyalty = {
-				estate = estate_church
-				loyalty = 10
-			}
-		}
+		add_estate_church_loyalty_effect = yes
 	}
 }
 
@@ -2515,6 +2411,35 @@ country_event = {
 	option = {
 		name = ideagroups.505.a
 		add_prestige = -25
+
+		hidden_effect = {
+			if = {
+				limit = {
+					any_ally = {
+						root = {
+							has_spy_network_in = {
+								who = prev
+								value = 30
+							}
+						}
+					}
+				}
+				random = {
+					chance = 25
+					random_ally = {
+						limit = {
+							root = {
+								has_spy_network_in = {
+									who = prev
+									value = 30
+								}
+							}
+						}
+						country_event = { id = espionage_events.9 days = 30 random = 120 }
+					}
+				}
+			}
+		}
 	}
 }
 
@@ -2535,6 +2460,7 @@ country_event = {
 		has_regency = no
 		is_female = no
 		religion_group = christian
+		has_government_attribute = heir
 		NOT = {	has_ruler_modifier =  "extra_heir" }
 	}
 	
@@ -2775,6 +2701,7 @@ country_event = {
 		name = ideagroups.604.b
 		trigger = {
 			religion = catholic
+			NOT = { tag = PAP }
 		}
 		add_papal_influence = 20
 	}
@@ -2815,7 +2742,7 @@ country_event = {
 		any_neighbor_country = {
 			religion = root
 			NOT = {
-				government  = root
+				same_govt_as_root_trigger = yes
 			}
 		}
 	}
@@ -2829,7 +2756,7 @@ country_event = {
 			limit = {
 				religion = root
 				NOT = {
-					government  = root
+					same_govt_as_root_trigger = yes
 				}
 			}
 			add_opinion = { who = ROOT modifier = reconciling_differences }
@@ -2970,6 +2897,7 @@ country_event = {
 	option = {
 		name = "EVTOPTB831A"
 		add_yearly_manpower = -1
+		add_army_professionalism = -0.01
 	}
 }
 
@@ -2993,6 +2921,7 @@ country_event = {
 	option = {
 		name = "EVTOPTB832A"
 		add_prestige = 5
+		add_army_professionalism = 0.01
 	}
 }
 
@@ -3350,16 +3279,7 @@ country_event = {
 	option = {
 		name = "EVTOPTB833A"
 		add_army_tradition = -10
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				estate = estate_nobles
-				loyalty = -10
-			}
-		}
+		reduce_estate_nobles_loyalty_effect = yes
 	}
 	
 	option = {
@@ -3406,6 +3326,14 @@ country_event = {
 		has_idea_group = defensive_ideas
 	}
 	
+	immediate = {
+		check_if_non_state_advisor_effect = { #Hidden, must be followed by erase_advisor_flags_effect
+			chance_of_primary = 65 #Not percentages!
+			chance_of_tertiary = 5
+			chance_of_secondary = 15
+		}
+	}
+	
 	mean_time_to_happen = {
 		days = 1
 	}
@@ -3413,10 +3341,11 @@ country_event = {
 	option = {
 		name = "EVTOPTB835A"
 		add_meritocracy_effect = yes
-		define_advisor = {
-			type = fortification_expert
+		generate_advisor_of_type_and_semi_random_religion_effect = {
+			advisor_type=fortification_expert
+			advisor_type_if_not_state=fortification_expert
 			skill = 2
-			discount = yes
+			discount=yes
 		}
 	}
 	option = {
@@ -3438,6 +3367,7 @@ country_event = {
 			}
 		}
 	}
+	after = { erase_advisor_flags_effect = yes }
 }
 
 # Promising General
@@ -3459,7 +3389,7 @@ country_event = {
 	
 	option = {
 		name = "EVTOPTA6130"
-		create_general = 50
+		create_general = { tradition = 50 }
 	}
 }
 
@@ -3499,7 +3429,6 @@ country_event = {
 			factor = 55
 			modifier = {
 				factor = 0
-				has_dlc = "The Cossacks"
 				has_estate = estate_nobles
 				NOT = {
 					estate_loyalty = {
@@ -3510,16 +3439,7 @@ country_event = {
 			}
 		}
 		add_army_tradition = -20
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				estate = estate_nobles
-				loyalty = 10
-			}
-		}
+		add_estate_nobles_loyalty_effect = yes
 	}
 }
 
@@ -3544,6 +3464,7 @@ country_event = {
 
 	option = {
 		name = "EVTOPTA6116"
+		add_army_professionalism = 0.01
 		add_country_modifier = {
 			name = "military_improvements"
 			duration = 3650
@@ -3572,6 +3493,7 @@ country_event = {
 
 	option = {
 		name = "EVTOPTA6117"
+		add_army_professionalism = -0.01
 		add_country_modifier = {
 			name = "military_complacency"
 			duration = 3650
@@ -3725,6 +3647,7 @@ country_event = {
 
 	option = {
 		name = ideagroups.811.a
+		add_army_professionalism = 0.01
 		add_country_modifier = {
 			name = "relentless_drill"
 			duration = 3650
@@ -4120,16 +4043,7 @@ country_event = {
 	
 	option = {
 		name = ideagroups.908.a
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_burghers
-			}
-			add_estate_loyalty = {
-				estate = estate_burghers
-				loyalty = 10
-			}
-		}
+		add_estate_burghers_loyalty_effect = yes
 		add_country_modifier = {
 			name = cooperation_with_merchant_class
 			duration = 3650
@@ -4279,7 +4193,9 @@ country_event = {
 
 	option = {
 		name = "EVTOPTA6102"
-		create_admiral = 50
+		create_admiral = {
+			tradition = 50
+		}
 	}
 }
 
@@ -4311,7 +4227,6 @@ country_event = {
 			}
 			modifier = {
 				factor = 0
-				has_dlc = "The Cossacks"
 				has_estate = estate_nobles
 				NOT = {
 					estate_loyalty = {
@@ -4322,32 +4237,14 @@ country_event = {
 			}
 		}
 		add_stability = -1
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				estate = estate_nobles
-				loyalty = -10
-			}
-		}
+		reduce_estate_nobles_loyalty_effect = yes
 	}
 	option = {
 		name = "EVTOPTB6103"
 		ai_chance = {
 			factor = 55
 		}
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				estate = estate_nobles
-				loyalty = 10
-			}
-		}
+		add_estate_nobles_loyalty_effect = yes
 		add_navy_tradition = -15
 	}
 }
@@ -4651,6 +4548,15 @@ country_event = {
 		has_idea_group = maritime_ideas
 		primitives = no
 	}
+	
+	immediate = {
+		check_if_non_state_advisor_effect = { #Hidden scripted effect, is used by scripted effect and must always be cleared in after = { } using erase_advisor_flags_effect.
+			chance_of_primary = 75 #Not percentages!
+			chance_of_tertiary = 5
+			chance_of_secondary = 15
+		}
+	}
+	
 	mean_time_to_happen = {
 		days = 1
 	}
@@ -4658,7 +4564,16 @@ country_event = {
 	option = {
 		name = "EVTOPTB841A"
 		add_meritocracy_effect = yes
-		create_advisor = naval_reformer
+		generate_advisor_of_type_and_semi_random_religion_effect = {
+			advisor_type=naval_reformer
+			advisor_type_if_not_state=naval_reformer
+			scaled_skill = yes
+			discount=yes
+		}
+	}
+	
+	after = {
+		erase_advisor_flags_effect = yes
 	}
 }
 
@@ -5499,6 +5414,7 @@ country_event = {
 			is_overseas = yes
 			religion_group = pagan
 			NOT = { has_province_modifier = evangelical_system }
+			NOT = { is_owned_by_trade_company = yes }
 		}
 	}
 
@@ -5636,16 +5552,7 @@ country_event = {
 	option = {
 		name = "EVTOPTB843A"
 		add_stability = -1
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_nobles
-			}
-			add_estate_loyalty = {
-				estate = estate_nobles
-				loyalty = -10
-			}
-		}
+		reduce_estate_nobles_loyalty_effect = yes
 	}
 }
 
@@ -5661,6 +5568,14 @@ country_event = {
 	mean_time_to_happen = {
 		days = 1
 	}
+	
+	immediate = {
+		check_if_non_state_advisor_effect = { #Hidden, must be followed by erase_advisor_flags_effect
+			chance_of_primary = 75 #Not percentages!
+			chance_of_tertiary = 0
+			chance_of_secondary = 15
+		}
+	}
 
 	trigger = {
 		has_idea_group = quality_ideas
@@ -5670,7 +5585,16 @@ country_event = {
 	option = {
 		name = "EVTOPTB844A"
 		add_meritocracy_effect = yes
-		create_advisor = commandant
+		add_army_professionalism = 0.01
+		generate_advisor_of_type_and_semi_random_religion_effect = {
+			advisor_type=commandant
+			advisor_type_if_not_state=commandant
+			skill = 2
+			discount=yes
+		}
+	}
+	after = {
+		erase_advisor_flags_effect = yes
 	}
 }
 
@@ -5696,10 +5620,12 @@ country_event = {
 	option = {
 		name = "EVTOPTA6305"
 		add_prestige = -25
+		add_army_professionalism = -0.01
 	}
 
 	option = {
 		name = "EVTOPTB6305"
+		add_army_professionalism = 0.01
 		add_country_modifier = {
 			name = quality_modifier
 			duration = 3650
@@ -5751,6 +5677,7 @@ country_event = {
 	option = {
 		name = "EVTOPTA6307"
 		add_prestige = -10
+		add_army_professionalism = -0.01
 	}
 
 	option = {
@@ -5956,6 +5883,7 @@ country_event = {
 	option = {
 		name = "EVTOPTB846A"
 		add_army_tradition = -5
+		add_army_professionalism = -0.01
 	}
 }
 
@@ -5973,6 +5901,14 @@ country_event = {
 		NOT = { has_idea_group = quality_ideas }
 	}
 	
+	immediate = {
+		check_if_non_state_advisor_effect = { #Hidden, must be followed by erase_advisor_flags_effect
+			chance_of_primary = 100 #Not percentages!
+			chance_of_tertiary = 0
+			chance_of_secondary = 5
+		}
+	}
+	
 	mean_time_to_happen = {
 		days = 1
 	}
@@ -5980,7 +5916,16 @@ country_event = {
 	option = {
 		name = "EVTOPTB847A"
 		add_meritocracy_effect = yes
-		create_advisor = army_organiser
+		add_army_professionalism = 0.01
+		generate_advisor_of_type_and_semi_random_religion_effect = {
+			advisor_type=army_organiser
+			advisor_type_if_not_state=army_organiser
+			skill = 2
+			discount=yes
+		}
+	}
+	after = {
+		erase_advisor_flags_effect = yes
 	}
 }
 
@@ -6022,6 +5967,7 @@ country_event = {
 	trigger = {
 		has_idea_group = quantity_ideas
 		NOT = { has_country_modifier = "horse_population_boom" }
+		livestock = 1
 	}
 	
 	mean_time_to_happen = {
@@ -6200,7 +6146,15 @@ country_event = {
 			name = admin_problems
 			duration = 3650
 		}
-		add_corruption = 0.5
+		if = {
+			limit = {
+				NOT = { has_completed_all_reforms_trigger = yes }
+			}
+			reduce_reform_progress_small_effect = yes
+		}
+		else = {
+			add_corruption = 0.5
+		}
 	}
 }
  
@@ -6333,6 +6287,7 @@ country_event = {
 	trigger = {
 		has_idea_group = expansion_ideas
 		primitives = no
+		NOT = { government = native }
 		NOT = { has_country_modifier = "ship_building_problems" }
 		NOT = { has_country_modifier = "ship_building_boom" }
 	}
@@ -6464,7 +6419,6 @@ country_event = {
 			factor = 45
 			modifier = {
 				factor = 0
-				has_dlc = "The Cossacks"
 				has_estate = estate_burghers
 				NOT = {
 					estate_loyalty = {
@@ -6478,16 +6432,7 @@ country_event = {
 			name = "trade_failure"
 			duration = 3650
 		}
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_burghers
-			}
-			add_estate_loyalty = {
-				estate = estate_burghers
-				loyalty = -10
-			}
-		}
+		reduce_estate_burghers_loyalty_effect = yes
 	}
 	option = {
 		name = ideagroups.1508.b
@@ -6495,16 +6440,7 @@ country_event = {
 			factor = 55
 		}
 		add_dip_power = -50
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_burghers
-			}
-			add_estate_loyalty = {
-				estate = estate_burghers
-				loyalty = 10
-			}
-		}
+		add_estate_burghers_loyalty_effect = yes
 	}
 } 
 
@@ -6521,6 +6457,8 @@ country_event = {
 		has_idea_group = expansion_ideas
 		NOT = { has_country_modifier = "ship_building_problems" }
 		NOT = { has_country_modifier = "ship_building_boom" }
+		NOT = { government = native }
+		primitives = no
 	}
 
 	mean_time_to_happen = {
@@ -6588,6 +6526,13 @@ country_event = {
 
 	option = {
 		name = "EVTOPTA6334"
+		if = {
+			limit = {
+				NOT = { has_completed_all_reforms_trigger = yes }
+				primitives = no
+			}
+			add_reform_progress_small_effect = yes
+		}
 		add_country_modifier = {
 			name = "centralised_state"
 			duration = 3650
@@ -6630,8 +6575,16 @@ country_event = {
 	}
 	option = {
 		name = "EVTOPTB6335"
-		add_prestige = -10
-		add_adm_power = -25
+		if = {
+			limit = {
+				NOT = { has_completed_all_reforms_trigger = yes }
+			}
+			reduce_reform_progress_small_effect = yes
+		}
+		else = {
+			add_prestige = -10
+			add_adm_power = -25
+		}
 	}
 } 
 
@@ -6724,7 +6677,9 @@ country_event = {
 		add_country_modifier = {
 			name = "glut_of_mercs"
 			duration = 3650
+			hidden = yes
 		}
+		custom_tooltip = generic_more_mercs_available_tt
 	}
 }
 
@@ -6776,6 +6731,13 @@ country_event = {
 	
 	option = {
 		name = ideagroups.1606.a
+		if = {
+			limit = {
+				NOT = { has_completed_all_reforms_trigger = yes }
+				primitives = no
+			}
+			add_reform_progress_small_effect = yes
+		}
 		add_country_modifier = {
 			name = "good_advise"
 			duration = 3650
@@ -6861,7 +6823,15 @@ country_event = {
 	
 	option = {
 		name = ideagroups.1609.b
-		add_corruption = 1
+		if = {
+			limit = {
+				NOT = { has_completed_all_reforms_trigger = yes }
+			}
+			reduce_reform_progress_big_effect = yes
+		}	
+		else = {
+			add_corruption = 1
+		}
 	}
 }
 
@@ -6944,7 +6914,9 @@ country_event = {
 
 	option = {
 		name = ideagroups.1701.a
-		create_admiral = 50
+		create_admiral = {
+			tradition = 50
+		}
 	}
 
 	option = {
@@ -7596,6 +7568,13 @@ country_event = {
 	option = {
 		name = ideagroups.1900.a
 		add_piety = -0.05
+		if = {
+			limit = {
+				NOT = { has_completed_all_reforms_trigger = yes }
+				primitives = no
+			}
+			add_reform_progress_small_effect = yes
+		}
 		add_country_modifier = {
 			name = "free_freethinkers"
 			duration = 3650
@@ -7688,6 +7667,13 @@ country_event = {
 
 	option = {
 		name = ideagroups.1903.a
+		if = {
+			limit = {
+				NOT = { has_completed_all_reforms_trigger = yes }
+				primitives = no
+			}
+			add_reform_progress_small_effect = yes
+		}
 		add_adm_power = 25
 		add_dip_power = 25
 		add_mil_power = 25
@@ -7787,16 +7773,7 @@ country_event = {
 	option = {
 		name = ideagroups.1906.a
 		add_piety = 0.05
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_dhimmi
-			}
-			add_estate_loyalty = {
-				estate = estate_dhimmi
-				loyalty = 10
-			}
-		}
+		add_estate_dhimmi_loyalty_effect = yes
 		random_owned_province = {
 			limit = {
 				has_owner_religion = no
@@ -7839,7 +7816,15 @@ country_event = {
 
 	option = {
 		name = ideagroups.1907.b
-		add_mil_power = -50
+		if = {
+			limit = {
+				NOT = { has_completed_all_reforms_trigger = yes }
+			}
+			reduce_reform_progress_small_effect = yes
+		}
+		else = {
+			add_mil_power = -50
+		}
 	}
 }
 
@@ -7855,8 +7840,8 @@ country_event = {
 	trigger = {
 		has_idea_group = humanist_ideas
 		NOT = { religion = jewish } #Has no heretic religions
-		NOT = { government = papal_government }
-		NOT = { government = theocratic_government }
+		NOT = { has_reform = papacy_reform }
+		NOT = { has_reform = leading_clergy_reform }
 		OR = {
 			NOT = { religion = catholic }
 			AND = {
@@ -7978,16 +7963,7 @@ country_event = {
 	option = {
 		name = "ideagroups.1908.a"
 		# Christian
-		if = {
-			limit = {
-				has_dlc = "The Cossacks"
-				has_estate = estate_dhimmi
-			}
-			add_estate_loyalty = {
-				estate = estate_dhimmi
-				loyalty = 10
-			}
-		}
+		add_estate_dhimmi_loyalty_effect = yes
 		if = {
 			limit = {
 				has_country_flag = protestant_heresy

@@ -62,8 +62,7 @@ country_event = {
 				if = {
 					limit = {
 						OR = {
-							has_province_modifier = center_of_trade_modifier
-							has_province_modifier = inland_center_of_trade_modifier
+							province_has_center_of_trade_of_level = 1
 							has_province_modifier = trade_post_modifier
 							has_province_modifier = river_estuary_modifier
 						}
@@ -145,8 +144,7 @@ country_event = {
 			if = {
 				limit = {
 					OR = {
-						has_province_modifier = center_of_trade_modifier
-						has_province_modifier = inland_center_of_trade_modifier
+						province_has_center_of_trade_of_level = 1
 						has_province_modifier = trade_post_modifier
 						has_province_modifier = river_estuary_modifier
 					}
