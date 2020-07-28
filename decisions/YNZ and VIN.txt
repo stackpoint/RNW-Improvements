@@ -1,0 +1,244 @@
+country_decisions = {
+	form_vinland = {
+		major = yes
+		potential = {
+			is_nomad = no
+			is_random_new_world = yes
+			religion = norse_pagan_reformed
+			technology_group = high_american
+			NOT = { exists = VIN }
+			is_subject = no
+			is_vassal = no
+		}
+		allow = {
+			religion = norse_pagan_reformed
+			technology_group = high_american
+			NOT = { exists = VIN }
+		}
+		effect = {
+			custom_tooltip = "Form Vinland"
+			custom_tooltip = "All states will have to be re-created after the decision is taken, but no cores will be lost. Treasury will be set to $250."
+			hidden_effect = {
+				set_country_flag = proto_empire_VIN
+				every_core_province = { #Cedes all provinces but the capital
+					limit = {
+						is_capital = no
+					}
+					cede_province = VIN
+					add_core = VIN
+				}
+					
+				VIN = { 
+					country_event = { id = idea_updater.1 }
+					set_government_rank = 2
+					change_technology_group = high_american
+				}
+				
+				#Discovery Block 
+				every_province = {
+					limit = {
+						has_discovered = ROOT
+					}
+						discover_country = VIN #tag of the released country
+				}
+				if = {
+					limit = {
+						ai = no
+					}
+					switch_tag = VIN #Becomes the empire (player)
+				}
+				if = {
+					limit = {
+						ai = yes
+					}
+					change_tag = VIN #Becomes the empire (AI)
+				}
+				
+				every_country = {
+					limit = {
+						has_country_flag = proto_empire_VIN
+					}
+					country_event = { id = rnw_empire.4 } 
+				}
+				change_religion = norse_pagan_reformed
+				change_unit_type = western
+				set_global_flag = VIN_created
+				add_treasury = 200
+				add_legitimacy = 100
+				every_owned_province ={
+					add_local_autonomy = -50
+				}
+				#Unit Updater - Not for Vinland, since it doesn't seem to lose its units.
+				#	if = {
+				#		limit = {
+				#			NOT = { mil_tech = 6 }	#When North Americans get calvalry
+				#		}
+				#		capital_scope = {
+				#			build_to_forcelimit = {	#Percentages multiplied by 5, since forcelimit is lower before states are created.
+				#				infantry = 4.0		#80% of post-state making forcelimit
+				#			}
+				#		}
+				#	}
+				#	if = {
+				#		limit = {
+				#			mil_tech = 6	#When North Americans get calvalry
+				#			NOT = { mil_tech = 7 } #But before they get arty
+				#		}
+				#		capital_scope = {
+				#			build_to_forcelimit = {	#Percentages multiplied by 5, since forcelimit is lower before states are created.
+				#				infantry = 3.0		#60% of post-state making forcelimit
+				#				cavalry = 1.0		#20%
+				#			}
+				#		}
+				#	}
+				#	if = {
+				#		limit = {
+				#			mil_tech = 7	#When North Americans get calvalry and arty
+				#		}
+				#		capital_scope = {
+				#			build_to_forcelimit = {	#Percentages multiplied by 5, since forcelimit is lower before states are created.
+				#				infantry = 2.0		
+				#				cavalry = 0.5
+				#				artillery = 1.5
+				#			}
+				#		}
+				#	}
+				#	random_owned_province = {
+				#		limit = {
+				#			has_port = yes
+				#		}
+				#		build_to_forcelimit = {
+				#			heavy_ship = 0.3
+				#			light_ship = 0.3
+				#			transport = 0.2
+				#			galley = 0.2
+				#		}
+				#	}
+				}
+			}
+		ai_will_do = {
+			factor = 5
+		}
+		ai_importance = 200
+	}
+	
+	form_yingzhou = {
+		major = yes
+		potential = {
+			is_nomad = no
+			is_random_new_world = yes
+			religion = confucianism
+			technology_group = high_american
+			NOT = { exists = YNZ }
+			is_subject = no
+			is_vassal = no
+		}
+		allow = {
+			religion = confucianism
+			technology_group = high_american
+			NOT = { exists = YNZ }
+		}
+		effect = {
+			custom_tooltip = "Form Yingzou"
+			custom_tooltip = "All states will have to be re-created after the decision is taken, but no cores will be lost. All armies and navies will be deleted. Regiments and navies equal to 80% of your force limit will be generated in the capital and in coastal provinces (if any exist).Treasury will be set to $250."
+			hidden_effect = {
+				set_country_flag = proto_empire_YNZ
+				every_core_province = { #Cedes all provinces but the capital
+						limit = {
+							is_capital = no
+						}
+						cede_province = YNZ
+						add_core = YNZ
+					}
+					
+				YNZ = { 
+					country_event = { id = idea_updater.1 }
+					set_government_rank = 2
+					change_technology_group = high_american
+				}
+				every_province = {
+					limit = {
+						has_discovered = ROOT
+					}
+					discover_country = YNZ #tag of the released country
+				}
+				if = {
+					limit = {
+						ai = no
+					}
+					switch_tag = YNZ #Becomes the empire (player)
+				}
+				if = {
+					limit = {
+						ai = yes
+					}
+					change_tag = YNZ #Becomes the empire (AI)
+				}
+				
+				every_country = {
+					limit = {
+						has_country_flag = proto_empire_YNZ
+					}
+					country_event = { id = rnw_empire.4 } 
+				}
+				change_religion = confucianism
+				change_unit_type = chinese
+				set_global_flag = YNZ_created
+				add_treasury = 200
+				add_republican_tradition = 100
+				every_owned_province ={
+					add_local_autonomy = -50
+				}
+				#Unit Updater
+					if = {
+						limit = {
+							NOT = { mil_tech = 6 }	#When North Americans get calvalry
+						}
+						capital_scope = {
+							build_to_forcelimit = {	#Percentages multiplied by 5, since forcelimit is lower before states are created.
+								infantry = 2.0		#80% of post-state making forcelimit
+							}
+						}
+					}
+					if = {
+						limit = {
+							mil_tech = 6	#When North Americans get calvalry
+							NOT = { mil_tech = 7 } #But before they get arty
+						}
+						capital_scope = {
+							build_to_forcelimit = {	#Percentages multiplied by 5, since forcelimit is lower before states are created.
+								infantry = 1.5		#60% of post-state making forcelimit
+								cavalry = 0.5		#20%
+							}
+						}
+					}
+					if = {
+						limit = {
+							mil_tech = 7	#When North Americans get calvalry and arty
+						}
+						capital_scope = {
+							build_to_forcelimit = {	#Percentages multiplied by 5, since forcelimit is lower before states are created.
+								infantry = 1.0		
+								cavalry = 0.25
+								artillery = 0.75
+							}
+						}
+					}
+					random_owned_province = {
+						limit = {
+							has_port = yes
+						}
+						build_to_forcelimit = {
+							heavy_ship = 0.3
+							light_ship = 0.5
+							transport = 0.2
+						}
+					}
+				}
+			}
+		ai_will_do = {
+			factor = 5
+		}
+		ai_importance = 200
+	}
+}

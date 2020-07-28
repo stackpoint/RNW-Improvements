@@ -1,0 +1,6 @@
+government = monarchy
+religion = norse_pagan_reformed
+technology_group = high_american
+capital = 1242 #Fiji (temporary)
+primary_culture = norwegian
+

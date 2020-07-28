@@ -1,0 +1,43 @@
+RNWI tests with version 1.9.2, Dec.19th 2016
+
+HDL:
+	Formation tests (player):
+		With no ideas: Success
+		With exploration ideas: No crash, but old finisher
+		With expansion ideas: No crash, but old finisher
+	Formation tests (ai):
+		With no ideas: 
+		With exploration ideas: 
+		With expansion ideas: 
+CRM:
+	Formation tests (player):
+		With no ideas: Success
+		With exploration ideas: No crash, but old finisher
+		With expansion ideas: 
+	Formation tests (ai):
+		With no ideas: Success
+		With exploration ideas: 
+		With expansion ideas: 
+
+Changelog:
+- Fixed bug where Dithmarschen didn't exist
+- Fixed bug where the Great Horde was still the Golden Horde.
+- All RNW formable tags cannot be formed by subjects or vassals. 
+- Added an event that fires at game-start to remove RNW tags with graphic glitches. 
+	- Will leave countries that will change their tags soon
+- Added unique nation names for all high american scenarios
+- Halved spawn chance of all high american scenarios, and moved high american republics to the top of the load order, because they can only
+	spawn in temperate and arctic zones, and all others can spawn in temperate zones as well. Previously they would load last, meaning they would
+	always suffer white borders. Now one of the others will be deleted with graphic glitch deleter event, so there will still be some natives in
+	the tropics and the north.
+- Increased the weight of Oltner2 to 120.
+
+Feb 14th, 2017
+- Fixed a bug in the ideas_updater that was causing crashes.
+- Fixed a bug in the Crimson Empire decision that made it a kingdom
+
+March 7th,2017
+- Updated to 1.20
+- Restrictions removed on inflation and interest reduction ideas. Randomized tags can now get these national ideas.
+
+	

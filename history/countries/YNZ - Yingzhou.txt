@@ -1,0 +1,7 @@
+government = republic
+add_government_reform = oligarchy_reform
+religion = confucianism
+technology_group = high_american
+capital = 1242 #Fiji (temporary)
+primary_culture = jianghuai
+

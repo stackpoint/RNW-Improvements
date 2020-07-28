@@ -1,0 +1,958 @@
+namespace = rnw_empire
+
+country_event = {
+
+	id = rnw_empire.1
+	title = "rnw_empire.1.title"
+	desc = "rnw_empire.1.desc"
+	hidden = yes
+	fire_only_once = yes
+	
+	trigger = {
+		OR = {
+			tag = CRM
+			tag = BRN
+			tag = HDL
+			tag = OBS
+		}
+	}
+	
+	mean_time_to_happen = {
+		months = 3
+	}
+	
+	option = {
+		name = rnw_empire.1.a
+		
+		every_province = {
+			limit = {
+				region = random_new_world_region 
+			}
+			discover_province = PREV
+		}
+	}
+}
+
+country_event = {
+	id = rnw_empire.3
+	title = "rnw_empire.3.title"
+	desc = "rnw_empire.3.desc"
+	hidden = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	trigger = { technology_group = high_american }
+	
+	option = {
+		name = rnw_empire.3.a
+		change_technology_group = high_american
+		
+	}
+}
+
+country_event = {
+	id = rnw_empire.4
+	title = "rnw_empire.4.title"
+	desc = "rnw_empire.4.desc"
+	hidden = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rnw_empire.4.a
+		
+		if = {
+			limit = {
+				religion = totemism
+			}
+			every_owned_province = {
+				limit = {
+					is_capital = yes
+				}
+				add_core = HDL
+				cede_province = HDL
+			}
+			HDL = { inherit = FROM }
+		}
+		if = {
+			limit = {
+				religion = mesoamerican_religion
+			}
+			every_owned_province = {
+				limit = {
+					is_capital = yes
+				}
+				add_core = CRM
+				cede_province = CRM
+			}
+			CRM = { inherit = FROM }
+		}
+		if = {
+			limit = {
+				religion = nahuatl
+			}
+			every_owned_province = {
+				limit = {
+					is_capital = yes
+				}
+				add_core = OBS
+				cede_province = OBS
+			}
+			OBS = { inherit = FROM }
+		}
+		if = {
+			limit = {
+				religion = inti
+			}
+			every_owned_province = {
+				limit = {
+					is_capital = yes
+				}
+				add_core = BRN
+				cede_province = BRN
+			}
+			BRN = { inherit = FROM }
+		}
+		if = {
+			limit = {
+				religion = confucianism
+			}
+			every_owned_province = {
+				limit = {
+					is_capital = yes
+				}
+				add_core = YNZ
+				cede_province = YNZ
+			}
+			YNZ = { inherit = FROM }
+			YNZ = {
+				country_event = {
+					id = rnw_empire.6
+				}
+			}
+		}
+		if = {
+			limit = {
+				religion = norse_pagan_reformed
+			}
+			#every_owned_province = {
+			#	limit = {
+			#		is_capital = yes
+			#	}
+			#	add_core = VIN
+			#	cede_province = VIN
+			#}
+			VIN = { inherit = FROM }
+			VIN = {
+				country_event = {
+					id = rnw_empire.6
+				}
+			}
+		}
+	}
+}
+
+country_event = {			#Updates Empire tags if they are present at start-up
+	id = rnw_empire.5
+	title = "rnw_empire.5.title"
+	desc = "rnw_empire.5.desc"
+	hidden = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rnw_empire.5.a
+		
+		any_country = {
+			limit = {
+				religion = totemism
+				technology_group = high_american
+				num_of_owned_provinces_with = {
+					value = 20
+					religion = totemism
+				}
+				is_year = 1444
+				is_month = 11
+				NOT = { has_global_flag = HDL_created }
+			}
+			set_country_flag = proto_empire_HDL
+			every_core_province = { #Cedes all provinces but the capital
+				limit = {
+					is_capital = no
+				}
+				cede_province = HDL
+				add_core = HDL
+			}
+				
+			HDL = { country_event = { id = idea_updater.1 } }
+			
+			every_province = {
+				limit = {
+					has_discovered = ROOT
+				}
+				discover_country = HDL #tag of the released country
+			}
+			
+			if = {
+				limit = {
+					ai = no
+				}
+				switch_tag = HDL #Becomes the empire (player)
+			}
+			if = {
+				limit = {
+					ai = yes
+				}
+				change_tag = HDL #Becomes the empire (AI)
+			}
+			
+			every_country = {
+				limit = {
+					has_country_flag = proto_empire_HDL
+				}
+				country_event = { id = rnw_empire.4 } 
+			}
+			HDL = {
+				change_technology_group = high_american
+				change_government = oligarchic_republic
+				set_government_rank = 3
+			}
+			set_global_flag = HDL_created
+			
+			add_republican_tradition = 100
+			every_owned_province ={
+				add_local_autonomy = -50
+			}
+		}
+		any_country = {
+			limit = {
+				religion = mesoamerican_religion
+				technology_group = high_american
+				num_of_owned_provinces_with = {
+					value = 20
+					religion = mesoamerican_religion
+				}
+				is_year = 1444
+				is_month = 11
+				NOT = { has_global_flag = CRM_created }
+			}
+			set_country_flag = proto_empire_CRM
+			every_core_province = { #Cedes all provinces but the capital
+					limit = {
+						is_capital = no
+					}
+					cede_province = CRM
+					add_core = CRM
+				}
+				
+			CRM = { country_event = { id = idea_updater.1 } }
+			every_province = {
+				limit = {
+					has_discovered = ROOT
+				}
+				discover_country = CRM #tag of the released country
+			}
+			if = {
+				limit = {
+					ai = no
+				}
+				switch_tag = CRM #Becomes the empire (player)
+			}
+			if = {
+				limit = {
+					ai = yes
+				}
+				change_tag = CRM #Becomes the empire (AI)
+			}
+			
+			every_country = {
+				limit = {
+					has_country_flag = proto_empire_CRM
+				}
+				country_event = { id = rnw_empire.4 } 
+			}
+			CRM = {
+				change_religion = mesoamerican_religion
+				change_technology_group = high_american
+				set_government_rank = 3
+			}
+			set_global_flag = CRM_created
+			
+			add_legitimacy = 100
+			every_owned_province ={
+				add_local_autonomy = -50
+			}
+		}
+		any_country = {
+			limit = {
+				religion = nahuatl
+				technology_group = high_american
+				num_of_owned_provinces_with = {
+					value = 20
+					religion = nahuatl
+				}
+				is_year = 1444
+				is_month = 11
+				NOT = { has_global_flag = OBS_created }
+			}
+			set_country_flag = proto_empire_OBS
+			every_core_province = { #Cedes all provinces but the capital
+					limit = {
+						is_capital = no
+					}
+					cede_province = OBS
+					add_core = OBS
+				}
+				
+			OBS = { country_event = { id = idea_updater.1 }	}
+			
+			every_province = {
+				limit = {
+					has_discovered = ROOT
+				}
+				discover_country = OBS #tag of the released country
+			}
+			
+			if = {
+				limit = {
+					ai = no
+				}
+				switch_tag = OBS #Becomes the empire (player)
+			}
+			if = {
+				limit = {
+					ai = yes
+				}
+				change_tag = OBS #Becomes the empire (AI)
+			}
+			every_country = {
+				limit = {
+					has_country_flag = proto_empire_OBS
+				}
+				country_event = { id = rnw_empire.4 } 
+			}
+			OBS = {
+				change_religion = nahuatl
+				change_technology_group = high_american
+				set_government_rank = 3
+			}
+			set_global_flag = OBS_created
+			
+			add_legitimacy = 100
+			every_owned_province ={
+				add_local_autonomy = -50
+			}
+		}
+		
+		any_country = {
+			limit = {
+				religion = inti
+				technology_group = high_american
+				num_of_owned_provinces_with = {
+					value = 20
+					religion = inti
+				}
+				is_year = 1444
+				is_month = 11
+				NOT = { has_global_flag = BRN_created }
+			}
+			set_country_flag = proto_empire_BRN
+			every_core_province = { #Cedes all provinces but the capital
+					limit = {
+						is_capital = no
+					}
+					cede_province = BRN
+					add_core = BRN
+				}
+				
+			BRN = { 
+				country_event = { id = idea_updater.1 }
+				set_government_rank = 3
+				change_technology_group = high_american
+			}
+			every_province = {
+				limit = {
+					has_discovered = ROOT
+				}
+				discover_country = BRN #tag of the released country
+			}
+			if = {
+				limit = {
+					ai = no
+				}
+				switch_tag = BRN #Becomes the empire (player)
+			}
+			if = {
+				limit = {
+					ai = yes
+				}
+				change_tag = BRN #Becomes the empire (AI)
+			}
+			
+			every_country = {
+				limit = {
+					has_country_flag = proto_empire_BRN
+				}
+				country_event = { id = rnw_empire.4 } 
+			}
+			change_religion = inti
+			set_global_flag = BRN_created
+			
+			add_legitimacy = 100
+			every_owned_province ={
+				add_local_autonomy = -50
+			}
+		}
+	}
+}
+country_event = {			#Adds province localization for YNZ and VIN	
+	id = rnw_empire.6
+	title = "rnw_empire.6.title"
+	desc = "rnw_empire.6.desc"
+	hidden = yes
+	is_triggered_only = yes
+	
+	Trigger = {
+		OR = {
+			tag = VIN
+			tag = YNZ
+		}
+	}
+	
+	option = {
+		name = rnw_empire.6.a
+		if = {
+			limit = {
+				tag = VIN
+			}
+			define_ruler = {
+				dynasty = "Erickson"
+			}
+			every_core_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = yes
+				}
+				change_province_name = "Leifsbudir"
+				rename_capital = "Leifsbudir"
+				set_province_flag = name_updated
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = no
+				}
+				change_province_name = "Kjalarnes"
+				rename_capital = "Kjalarnes"
+				set_province_flag = name_updated
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = no
+				}
+				change_province_name = "Straumsfjordr"
+				rename_capital = "Straumsfjordr"
+				set_province_flag = name_updated
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = no
+				}
+				change_province_name = "Furdustrandir"
+				rename_capital = "Furdustrandir"
+				set_province_flag = name_updated
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = no
+				}
+				change_province_name = "Hop"
+				rename_capital = "Hop"
+				set_province_flag = name_updated
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = no
+				}
+				change_province_name = "Markland"
+				rename_capital = "Markland"
+				set_province_flag = name_updated
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = no
+				}
+				change_province_name = "Helluland"
+				rename_capital = "Helluland"
+				set_province_flag = name_updated
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = no
+				}
+				change_province_name = "Hvitramannaland"
+				rename_capital = "Hvitramannaland"
+				set_province_flag = name_updated
+			}
+		}
+		
+		if = {
+			limit = {
+				tag = YNZ
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = yes
+				}
+				change_province_name = "Yingzhou"
+				rename_capital = "Yingzhou"
+				set_province_flag = name_updated
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = no
+				}
+				change_province_name = "Penglai"
+				rename_capital = "Penglai"
+				set_province_flag = name_updated
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = no
+				}
+				change_province_name = "Fanghu"
+				rename_capital = "Fanghu"
+				set_province_flag = name_updated
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = no
+				}
+				change_province_name = "Yuanjiao"
+				rename_capital = "Yuanjiao"
+				set_province_flag = name_updated
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = no
+				}
+				change_province_name = "Daiyu"
+				rename_capital = "Daiyu"
+				set_province_flag = name_updated
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = no
+				}
+				change_province_name = "Fusang"
+				rename_capital = "Fusang"
+				set_province_flag = name_updated
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = no
+				}
+				change_province_name = "Yushan"
+				rename_capital = "Yushan"
+				set_province_flag = name_updated
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = no
+				}
+				change_province_name = "Kunlun"
+				rename_capital = "Kunlun"
+				set_province_flag = name_updated
+			}
+			random_owned_province = {
+				limit = {
+					NOT = { has_province_flag =  name_updated }
+					is_capital = no
+				}
+				change_province_name = "Xuanpu"
+				rename_capital = "Xuanpu"
+				set_province_flag = name_updated
+			}
+		}
+	}	
+}
+country_event = {		#Corrects TI	
+	id = rnw_empire.7
+	title = "rnw_empire.7.title"
+	desc = "rnw_empire.7.desc"
+	hidden = yes
+	is_triggered_only = yes
+	
+	Trigger = {
+		OR = {
+			tag = VIN
+			tag = YNZ
+			tag = HDL
+			tag = OBS
+			tag = CRM
+			tag = BUR
+		}
+	}
+	
+	option = {
+		name = rnw_empire.7.a
+			
+		every_province = {
+			limit = {
+				has_discovered = FROM
+			}
+			discover_country = ROOT #tag of the released country
+			ROOT = {
+				discover_province = PREV
+			}
+			every_neighbor_province = {
+				limit = {
+					is_sea = yes
+					has_discovered = ROOT
+				}
+				ROOT = {
+					discover_province = PREV
+				}
+			}
+		}
+	}
+}
+
+country_event = {				#Gives player the option to remove tags with white borders	
+	id = rnw_empire.8
+	title = "rnw_empire.8.title"
+	desc = "rnw_empire.8.desc"
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		ai = no
+		OR = {				#All tags I have found that cause graphical issues
+			exists = K00
+			exists = K01
+			exists = K02
+			exists = K03
+			exists = K04
+			exists = K05
+			exists = K06
+			exists = K07
+			exists = K08
+			exists = K09
+			exists = K10
+			exists = K11
+			exists = K12
+			exists = K13
+			exists = K14
+			exists = K15
+			exists = K16
+			exists = K17
+			exists = K18
+			exists = K19
+			exists = K20
+			exists = K21
+			exists = K22
+			exists = K23
+			exists = K24
+			exists = K25
+			exists = K26
+			exists = K27
+			exists = K28
+			exists = K29
+			exists = K30
+			exists = K31
+			exists = K32
+			exists = K33
+			exists = K34
+			exists = K35
+			exists = K36
+			exists = K37
+			exists = K38
+			exists = K39
+			exists = K40
+			exists = K41
+			exists = K42
+			exists = K43
+			exists = K45
+			exists = K46
+			exists = K47
+			exists = K48
+			exists = K49
+			exists = K50
+			
+			exists = D00
+			exists = D01
+			exists = D02
+			exists = D03
+			exists = D04
+			exists = D05
+			exists = D06
+			exists = D07
+			exists = D08
+			exists = D09
+			exists = D10
+			exists = D11
+			exists = D12
+			exists = D13
+			exists = D14
+			exists = D15
+			exists = D16
+			exists = D17
+			exists = D18
+			exists = D19
+			exists = D20
+			exists = D21
+			exists = D22
+			exists = D23
+			exists = D24
+			exists = D25
+			exists = D26
+			exists = D27
+			exists = D28
+			exists = D29
+			exists = D30
+			exists = D31
+			exists = D32
+			exists = D33
+			exists = D34
+			exists = D35
+			exists = D36
+			exists = D37
+			exists = D38
+			exists = D39
+			exists = D40
+			exists = D41
+			exists = D42
+			exists = D43
+			exists = D45
+			exists = D46
+			exists = D47
+			exists = D48
+			exists = D49
+			exists = D50
+		}
+	}
+	
+	option = {					#Remove all countries with graphical glitches
+		name = "rnw_empire.8.a"
+		
+		hidden_effect = {
+			every_country = {
+				limit = {
+					ai = yes
+					is_broken_tag = yes
+					NOT = {		#Excludes tags that will soon take tag-switch decisions
+						OR = {
+							AND = {				#HDL
+								is_nomad = no
+								is_random_new_world = yes
+								religion = totemism
+								technology_group = high_american
+								is_subject = no
+								is_vassal = no
+								OR = {
+									vassal = 8
+									num_of_cities = 30
+								}
+								religion = totemism
+								technology_group = high_american
+								NOT = { exists = HDL }
+							}
+							AND = {			#CRM
+								is_nomad = no
+								is_random_new_world = yes
+								religion = mesoamerican_religion
+								technology_group = high_american
+								is_subject = no
+								is_vassal = no
+								OR = {
+									vassal = 5
+									num_of_cities = 30
+								}
+								NOT = { exists = CRM }
+								religion = mesoamerican_religion
+								technology_group = high_american
+							}
+							AND = {			#OBS
+								is_nomad = no
+								is_random_new_world = yes
+								religion = nahuatl
+								technology_group = high_american
+								is_subject = no
+								is_vassal = no
+								OR = {
+									vassal = 5
+									num_of_cities = 30
+								}
+								religion = nahuatl
+								technology_group = high_american
+								NOT = { exists = OBS }
+							}
+							AND = {			#VIN
+								is_nomad = no
+								is_random_new_world = yes
+								religion = norse_pagan_reformed
+								technology_group = high_american
+								NOT = { exists = VIN }
+								is_subject = no
+								is_vassal = no
+								religion = norse_pagan_reformed
+								technology_group = high_american
+								NOT = { exists = VIN }
+							}
+							AND = {		#YNZ
+								is_nomad = no
+								is_random_new_world = yes
+								religion = confucianism
+								technology_group = high_american
+								NOT = { exists = YNZ }
+								is_subject = no
+								is_vassal = no
+								religion = confucianism
+								technology_group = high_american
+								NOT = { exists = YNZ }
+							}
+						}
+					}
+				}
+				every_owned_province = {
+					add_base_manpower = -10
+					add_base_production = -10
+					add_base_tax = -10
+					cede_province = XXX #Cedes it to an invalid tag, making it empty.
+				}
+			}
+		}
+	}
+	
+	option = {				#Remove all countries but mine 
+		name = "rnw_empire.8.b"
+		trigger = {
+			is_broken_tag = yes
+		}
+		hidden_effect = {
+			every_country = {
+				limit = {
+					ai = yes
+					is_broken_tag = yes
+					NOT = {		#Excludes tags that will soon take tag-switch decisions
+						OR = {
+							AND = {				#HDL
+								is_nomad = no
+								is_random_new_world = yes
+								religion = totemism
+								technology_group = high_american
+								is_subject = no
+								is_vassal = no
+								OR = {
+									vassal = 8
+									num_of_cities = 30
+								}
+								religion = totemism
+								technology_group = high_american
+								NOT = { exists = HDL }
+							}
+							AND = {			#CRM
+								is_nomad = no
+								is_random_new_world = yes
+								religion = mesoamerican_religion
+								technology_group = high_american
+								is_subject = no
+								is_vassal = no
+								OR = {
+									vassal = 5
+									num_of_cities = 30
+								}
+								NOT = { exists = CRM }
+								religion = mesoamerican_religion
+								technology_group = high_american
+							}
+							AND = {			#OBS
+								is_nomad = no
+								is_random_new_world = yes
+								religion = nahuatl
+								technology_group = high_american
+								is_subject = no
+								is_vassal = no
+								OR = {
+									vassal = 5
+									num_of_cities = 30
+								}
+								religion = nahuatl
+								technology_group = high_american
+								NOT = { exists = OBS }
+							}
+							AND = {			#VIN
+								is_nomad = no
+								is_random_new_world = yes
+								religion = norse_pagan_reformed
+								technology_group = high_american
+								NOT = { exists = VIN }
+								is_subject = no
+								is_vassal = no
+								religion = norse_pagan_reformed
+								technology_group = high_american
+								NOT = { exists = VIN }
+							}
+							AND = {		#YNZ
+								is_nomad = no
+								is_random_new_world = yes
+								religion = confucianism
+								technology_group = high_american
+								NOT = { exists = YNZ }
+								is_subject = no
+								is_vassal = no
+								religion = confucianism
+								technology_group = high_american
+								NOT = { exists = YNZ }
+							}
+						}
+					}
+				}
+				every_owned_province = {
+					add_base_manpower = -100
+					add_base_production = -100
+					add_base_tax = -100
+					cede_province = XXX #Cedes it to an invalid tag, making it empty.
+				}
+			}
+		}
+	}
+	option = {			#Don't remove the countries 
+		name = "rnw_empire.8.c"
+	}
+}
+
+country_event = {			#Fixes legitimacy of high american monarchs
+	id = rnw_empire.9
+	title = "rnw_empire.9.title"
+	desc = "rnw_empire.9.desc"
+	hidden = yes
+	fire_only_once = yes
+	is_triggered_only = yes
+	
+	option = {
+		name = rnw_empire.9.a
+		
+
+		every_country = {
+			limit = {
+				technology_group = high_american
+			}	
+			add_legitimacy = 100
+		}
+	}
+}
+

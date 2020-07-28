@@ -1,0 +1,18 @@
+on_startup = {
+	events = {
+		rnw_dev_boost.1
+		rnw_dev_boost.2
+		rnw_empire.5
+		rnw_empire.8
+		rnw_empire.9
+		muslim_school_events.20 #Pick School
+	}
+	if = {
+		limit = {
+			has_dlc = "Cradle of Civilization"
+			has_country_modifier = tur_janissary
+		}
+		remove_country_modifier = tur_janissary
+	}
+	initialize_schools_effect = yes #This is only used here but is used for readability of on_action file.
+}

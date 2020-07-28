@@ -1,0 +1,67 @@
+########################################
+# Distributes Level 1 and 2 Trading Posts
+#	in the Random New World
+#
+#		Written by Elzephor
+########################################
+
+namespace = rnw_trade_posts
+
+#Boost for Andean, Mesoamerican, and Indian nations in the RNW
+country_event = {
+	id = rnw_trade_posts.1
+	title = "rnw_trade_posts.1.title"
+	desc = "rnw_trade_posts.1.desc"
+	picture = CITY_VIEW_eventPicture
+	
+	hidden = yes
+	is_triggered_only = yes
+	
+	trigger = {
+		is_random_new_world = yes
+		NOT = { has_country_flag = received_trade_post }
+		capital_scope = {
+			NOT = {
+				OR = {
+					continent = europe
+					continent = asia
+					continent = africa
+					continent = north_america
+					continent = south_america
+					continent = oceania
+				}
+			}
+		}
+	}	
+	
+	immediate = {
+		set_country_flag = received_trade_post
+	}
+	
+	option = {
+	name = "rnw_trade_posts.1.a"
+	
+		every_owned_province = {
+			if = {
+				limit = {
+					#Has level 1 post
+					}
+				#Upgrade to level 2 post
+			}
+			if = {
+				limit = {
+					#Has at least 10 development
+				}
+				random_list = {
+					95 = {
+						#No effect
+					}
+					5 = {
+						#Get a Level 1 trade post
+					}
+				}
+			}
+			 
+		}
+	}
+}

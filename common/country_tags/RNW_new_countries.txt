@@ -1,0 +1,7 @@
+#Random New World Empires (Added by Elzephor)
+HDL = "countries/Haudenosaunee_League.txt"
+CRM = "countries/Crimson_Empire.txt"
+BRN = "countries/Burning_Empire.txt"
+OBS = "countries/Obsidian_Empire.txt"
+YNZ = "countries/Yingzhou.txt"
+VIN = "countries/Vinland.txt"

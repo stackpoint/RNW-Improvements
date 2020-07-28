@@ -1,0 +1,6 @@
+government = monarchy
+primary_culture = aztek
+religion = nahuatl
+technology_group = high_american
+capital = 1242 #Fiji (temporary)
+

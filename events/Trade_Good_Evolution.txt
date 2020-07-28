@@ -1,0 +1,235 @@
+########################################
+# Trade good changing events
+#
+# Written by Elzephor
+########################################
+
+namespace = trade_good_evolution
+
+# New Production (Cloth)
+
+province_event= {
+	id = trade_good_evolution.1
+	title = "trade_good_evolution.1.title"
+	desc = "trade_good_evolution.1.desc"
+	picture = CITY_VIEW_eventPicture
+	
+	
+	trigger = {
+		NOT = {trade_goods = cloth}
+		NOT = {trade_goods = silk}
+		NOT = {trade_goods = chinaware}
+		NOT = { culture_group = east_asian }
+		NOT = { has_province_flag = evolution_offered  }
+		development = 20
+		base_tax = 7
+		OR = {
+			continent = new_world
+			continent = south_america
+			continent = north_america
+			continent = oceania
+		}	
+		owner = { treasury = 100 }		
+	}
+	
+	mean_time_to_happen = {
+		months = 480
+	}
+	
+	option = {
+		name = "trade_good_evolution.1.a"
+		ai_chance = { 
+			factor = 50 
+			modifier = {
+				factor = 0
+				OR = {
+					trade_goods = spices 
+					trade_goods = cocoa 
+					trade_goods = tropical_wood 
+					trade_goods = sugar 
+					trade_goods = dyes 
+					trade_goods = silk 
+					trade_goods = coffee
+					trade_goods = iron
+					trade_goods = gold
+					trade_goods = ivory
+					trade_goods = copper
+				}
+			}
+		}
+		change_trade_goods = cloth
+		owner = { add_treasury = -100 }
+		set_province_flag = evolution_offered
+	}
+	
+	option = {
+		name = "trade_good_evolution.1.b"
+		ai_chance = {
+			factor = 50 
+			modifier = {
+				factor = 0
+				OR = {
+				trade_goods = grain
+				trade_goods = fish
+				trade_goods = wool
+				trade_goods = naval_supplies
+				}
+			}
+		}
+		set_province_flag = evolution_offered
+	}
+}
+
+
+
+# New Production (Chinaware) 
+
+province_event= {
+	id = trade_good_evolution.2
+	title = "trade_good_evolution.2.title"
+	desc = "trade_good_evolution.2.desc"
+	picture = CITY_VIEW_eventPicture
+	
+	trigger = {
+		NOT = {trade_goods = cloth}
+		NOT = {trade_goods = silk}
+		NOT = {trade_goods = chinaware}
+		NOT = { has_province_flag = evolution_offered  }
+		culture_group = east_asian 
+		development = 15
+		base_tax = 7
+		OR = {
+			continent = new_world
+			continent = south_america
+			continent = north_america
+			continent = oceania
+		}	
+		owner = { treasury = 100 }
+	}
+	
+	mean_time_to_happen = {
+		months = 480
+	}
+	
+	option = {
+		name = "trade_good_evolution.2.a"
+		ai_chance = { 
+			factor = 50 
+			modifier = {
+				factor = 0
+				OR = {
+					trade_goods = spices 
+					trade_goods = cocoa 
+					trade_goods = tropical_wood 
+					trade_goods = sugar 
+					trade_goods = dyes 
+					trade_goods = silk 
+					trade_goods = coffee
+					trade_goods = iron
+					trade_goods = gold
+					trade_goods = ivory
+					trade_goods = copper
+					trade_goods = cloth
+					trade_goods = salt
+					trade_goods = tobacco
+				}
+			}
+		}
+		set_province_flag = evolution_offered 
+		change_trade_goods = chinaware
+		owner = { add_treasury = -100 }
+	}
+	
+	option = {
+		name = "trade_good_evolution.2.b"
+		ai_chance = {
+			factor = 50 
+			modifier = {
+				factor = 0
+				OR = {
+					trade_goods = grain
+					trade_goods = fish
+					trade_goods = wool
+					trade_goods = naval_supplies
+				}
+			}
+		}
+		set_province_flag = evolution_offered 
+	}
+}
+
+
+# New Production (Silk) for independent nation
+
+province_event= {
+	id = trade_good_evolution.3
+
+	title = "trade_good_evolution.3.title"
+	desc = "trade_good_evolution.3.desc"
+	picture = CITY_VIEW_eventPicture
+	
+	
+	trigger = {
+		NOT = {trade_goods = cloth}
+		NOT = {trade_goods = silk}
+		NOT = {trade_goods = chinaware}
+		NOT = { has_province_flag = evolution_offered  }
+		culture_group = east_asian 
+		development = 20
+		base_tax = 7
+		OR = {
+			continent = new_world
+			continent = south_america
+			continent = north_america
+			continent = oceania
+		}	
+		owner = { treasury = 100 }
+	}
+	
+	mean_time_to_happen = {
+		months = 480
+	}
+	
+	option = {
+		name = "trade_good_evolution.3.a"
+		ai_chance = { 
+			factor = 50 
+			modifier = {
+				factor = 0
+				OR = {
+					trade_goods = spices 
+					trade_goods = cocoa 
+					trade_goods = tropical_wood 
+					trade_goods = sugar 
+					trade_goods = dyes 
+					trade_goods = silk 
+					trade_goods = coffee
+					trade_goods = iron
+					trade_goods = gold
+					trade_goods = ivory
+					trade_goods = tobacco
+				}
+			}
+		}
+		set_province_flag = evolution_offered
+		change_trade_goods = silk
+		owner = { add_treasury = -100 }
+	}
+	
+	option = {
+		name = "trade_good_evolution.3.b"
+		ai_chance = {
+			factor = 50 
+			modifier = {
+				factor = 0
+				OR = {
+					trade_goods = grain
+					trade_goods = fish
+					trade_goods = wool
+					trade_goods = naval_supplies
+				}
+			}
+		}
+		set_province_flag = evolution_offered
+	}
+}

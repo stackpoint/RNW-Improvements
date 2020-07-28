@@ -1,0 +1,1527 @@
+namespace = idea_updater
+
+country_event = {
+	id = idea_updater.1
+	title = "idea_updater_1_title"
+	desc = "idea_updater_1_desc"
+
+	is_triggered_only = yes
+	hidden = yes
+	
+	option = {
+	name = idea_updater.1.a
+	
+		#Aristocracy Ideas
+		if = {
+			limit = {
+				FROM = { full_idea_group = aristocracy_ideas }
+			}
+			ROOT = {
+				add_idea_group = aristocracy_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = noble_knights }
+			}
+			ROOT = {
+				add_idea_group = aristocracy_ideas
+				remove_idea = noble_knights
+				remove_idea = military_traditions
+				remove_idea = local_nobility
+				remove_idea = serfdom
+				remove_idea = noble_officers
+				remove_idea = international_nobility
+				remove_idea = noble_resilience
+				add_idea = noble_knights
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = military_traditions }
+			}
+			ROOT = {
+				add_idea = military_traditions
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = local_nobility }
+			}
+			ROOT = {
+				add_idea = local_nobility
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = serfdom }
+			}
+			ROOT = {
+				add_idea = serfdom
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = noble_officers }
+			}
+			ROOT = {
+				add_idea = noble_officers
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = international_nobility }
+			}
+			ROOT = {
+				add_idea = international_nobility
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = noble_resilience }
+			}
+			ROOT = {
+				add_idea = noble_resilience
+			}
+		}
+		
+
+		#Plutocracy Ideas
+
+		if = {
+			limit = {
+				FROM = { full_idea_group = plutocracy_ideas }
+			}
+			ROOT = {
+				add_idea_group = plutocracy_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = tradition_of_payment }
+			}
+			ROOT = {
+				add_idea_group = plutocracy_ideas
+				remove_idea = abolished_serfdom
+				remove_idea = bill_of_rights
+				remove_idea = free_merchants
+				remove_idea = free_subjects
+				remove_idea = free_cities
+				remove_idea = emancipation
+				add_idea = tradition_of_payment
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = abolished_serfdom }
+			}
+			ROOT = {
+				add_idea = abolished_serfdom
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = bill_of_rights }
+			}
+			ROOT = {
+				add_idea = bill_of_rights
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = free_merchants }
+			}
+			ROOT = {
+				add_idea = free_merchants
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = free_subjects }
+			}
+			ROOT = {
+				add_idea = free_subjects
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = free_cities }
+			}
+			ROOT = {
+				add_idea = free_cities
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = emancipation }
+			}
+			ROOT = {
+				add_idea = emancipation
+			}
+		}
+
+		#Innovation Ideas
+
+		if = {
+			limit = {
+				FROM = { full_idea_group = innovativeness_ideas}
+			}
+			ROOT = {
+				add_idea_group = innovativeness_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = patron_of_art }
+			}
+			ROOT = {
+				add_idea_group = innovativeness_ideas
+				remove_idea = pragmatism
+				remove_idea = scientific_revolution
+				remove_idea = dynamic_court
+				remove_idea = resilient_state
+				remove_idea = optimism
+				remove_idea = formalized_officer_corps
+				add_idea = patron_of_art
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = pragmatism }
+			}
+			ROOT = {
+				add_idea = pragmatism
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = scientific_revolution }
+			}
+			ROOT = {
+				add_idea = scientific_revolution
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = dynamic_court }
+			}
+			ROOT = {
+				add_idea = dynamic_court
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = resilient_state }
+			}
+			ROOT = {
+				add_idea = resilient_state
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = optimism }
+			}
+			ROOT = {
+				add_idea = optimism
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = formalized_officer_corps }
+			}
+			ROOT = {
+				add_idea = formalized_officer_corps
+			}
+		}
+		
+		#Religious Ideas
+		
+		if = {
+			limit = {
+				FROM = { full_idea_group = religious_ideas }
+			}
+			ROOT = {
+				add_idea_group = religious_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = missionary_schools }
+			}
+			ROOT = {
+				add_idea_group = religious_ideas
+				remove_idea = church_attendance_duty
+				remove_idea = divine_supremacy
+				remove_idea = devoutness
+				remove_idea = religious_tradition
+				remove_idea = inquisition
+				remove_idea = deus_vult
+				add_idea = missionary_schools
+			}
+		}
+		
+
+		if = {
+			limit = {
+				FROM = { has_idea = church_attendance_duty }
+			}
+			ROOT = {
+				add_idea = church_attendance_duty
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = divine_supremacy }
+			}
+			ROOT = {
+				add_idea = divine_supremacy
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = devoutness }
+			}
+			ROOT = {
+				add_idea = devoutness
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = religious_tradition }
+			}
+			ROOT = {
+				add_idea = religious_tradition
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = inquisition }
+			}
+			ROOT = {
+				add_idea = inquisition
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = deus_vult }
+			}
+			ROOT = {
+				add_idea = deus_vult
+			}
+		}
+		
+		#Espionage Ideas
+		
+		
+		if = {
+			limit = {
+				FROM = { full_idea_group = spy_ideas }
+			}
+			ROOT = {
+				add_idea_group = spy_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = efficient_spies }
+			}
+			ROOT = {
+				add_idea_group = spy_ideas
+
+				remove_idea = agent_training
+				remove_idea = vetting
+				remove_idea = additional_loyalist_recruitment
+				remove_idea = claim_fabrication
+				remove_idea = privateers
+				remove_idea = audit_checks
+				add_idea = efficient_spies
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = efficient_spies }
+			}
+			ROOT = {
+				add_idea = efficient_spies
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = agent_training }
+			}
+			ROOT = {
+				add_idea = agent_training
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = additional_loyalist_recruitment }
+			}
+			ROOT = {
+				add_idea = additional_loyalist_recruitment
+			}
+		}
+
+		
+
+		if = {
+			limit = {
+				FROM = { has_idea = claim_fabrication }
+			}
+			ROOT = {
+				add_idea = claim_fabrication
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = privateers }
+			}
+			ROOT = {
+				add_idea = privateers
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = audit_checks }
+			}
+			ROOT = {
+				add_idea = audit_checks
+			}
+		}
+		
+		#Diplomatic Ideas
+
+		
+		if = {
+			limit = {
+				FROM = { full_idea_group = diplomatic_ideas }
+			}
+			ROOT = {
+				add_idea_group = diplomatic_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = foreign_embassies }
+			}
+			ROOT = {
+				add_idea_group = diplomatic_ideas
+				remove_idea = cabinet
+				remove_idea = war_cabinet
+				remove_idea = benign_diplomats
+				remove_idea = experienced_diplomats
+				remove_idea = flexible_negotiation
+				remove_idea = diplomatic_corps
+				add_idea = foreign_embassies
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = cabinet }
+			}
+			ROOT = {
+				add_idea = cabinet
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = war_cabinet }
+			}
+			ROOT = {
+				add_idea = war_cabinet
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = benign_diplomats }
+			}
+			ROOT = {
+				add_idea = benign_diplomats
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = experienced_diplomats }
+			}
+			ROOT = {
+				add_idea = experienced_diplomats
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = flexible_negotiation }
+			}
+			ROOT = {
+				add_idea = flexible_negotiation
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = diplomatic_corps }
+			}
+			ROOT = {
+				add_idea = diplomatic_corps
+			}
+		}
+		
+		#Offensive Ideas
+		
+		if = {
+			limit = {
+				FROM = { full_idea_group = offensive_ideas }
+			}
+			ROOT = {
+				add_idea_group = offensive_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = bayonet_leaders }
+			}
+			ROOT = {
+				add_idea_group = offensive_ideas
+				remove_idea = national_conscripts
+				remove_idea = superior_firepower
+				remove_idea = glorious_arms
+				remove_idea = engineer_corps
+				remove_idea = grand_army
+				remove_idea = napoleonic_warfare
+				add_idea = bayonet_leaders
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = national_conscripts }
+			}
+			ROOT = {
+				add_idea = national_conscripts
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = superior_firepower }
+			}
+			ROOT = {
+				add_idea = superior_firepower
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = glorious_arms }
+			}
+			ROOT = {
+				add_idea = glorious_arms
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = engineer_corps }
+			}
+			ROOT = {
+				add_idea = engineer_corps
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = grand_army }
+			}
+			ROOT = {
+				add_idea = grand_army
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = napoleonic_warfare }
+			}
+			ROOT = {
+				add_idea = napoleonic_warfare
+			}
+		}
+		
+		#Defensive Ideas
+		
+		if = {
+			limit = {
+				FROM = { full_idea_group = defensive_ideas }
+			}
+			ROOT = {
+				add_idea_group = defensive_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = battlefield_commisions }
+			}
+			ROOT = {
+				add_idea_group = defensive_ideas
+				remove_idea = military_drill
+				remove_idea = improved_manuever
+				remove_idea = regimental_system
+				remove_idea = defensive_mentality
+				remove_idea = supply_trains
+				remove_idea = improved_foraging
+				add_idea = battlefield_commisions
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = military_drill }
+			}
+			ROOT = {
+				add_idea = military_drill
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = improved_manuever }
+			}
+			ROOT = {
+				add_idea = improved_manuever
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = regimental_system }
+			}
+			ROOT = {
+				add_idea = regimental_system
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = defensive_mentality }
+			}
+			ROOT = {
+				add_idea = defensive_mentality
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = supply_trains }
+			}
+			ROOT = {
+				add_idea = supply_trains
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = improved_foraging }
+			}
+			ROOT = {
+				add_idea = improved_foraging
+			}
+		}
+
+		#Trade Ideas
+		
+		if = {
+			limit = {
+				FROM = { full_idea_group = trade_ideas }
+			}
+			ROOT = {
+				add_idea_group = trade_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = shrewd_commerce_practise }
+			}
+			ROOT = {
+				add_idea_group = trade_ideas
+				remove_idea = free_trade
+				remove_idea = merchant_adventures
+				remove_idea = national_trade_policy
+				remove_idea = overseas_merchants
+				remove_idea = trade_manipulation
+				remove_idea = fast_negotiations
+				add_idea = shrewd_commerce_practise
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = free_trade }
+			}
+			ROOT = {
+				add_idea = free_trade
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = merchant_adventures }
+			}
+			ROOT = {
+				add_idea = merchant_adventures
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = national_trade_policy }
+			}
+			ROOT = {
+				add_idea = national_trade_policy
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = overseas_merchants }
+			}
+			ROOT = {
+				add_idea = overseas_merchants
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = trade_manipulation }
+			}
+			ROOT = {
+				add_idea = trade_manipulation
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = fast_negotiations }
+			}
+			ROOT = {
+				add_idea = fast_negotiations
+			}
+		}
+		
+		#Economic Ideas
+		
+		if = {
+			limit = {
+				FROM = { full_idea_group = economic_ideas }
+			}
+			ROOT = {
+				add_idea_group = economic_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = bureaucracy }
+			}
+			ROOT = {
+				add_idea_group = economic_ideas
+				remove_idea = organised_construction
+				remove_idea = national_bank
+				remove_idea = debt_and_loans
+				remove_idea = centralization
+				remove_idea = nationalistic_enthusiasm
+				remove_idea = smithian_economics
+				add_idea = bureaucracy
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = organised_construction }
+			}
+			ROOT = {
+				add_idea = organised_construction
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = national_bank }
+			}
+			ROOT = {
+				add_idea = national_bank
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = debt_and_loans }
+			}
+			ROOT = {
+				add_idea = debt_and_loans
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = centralization }
+			}
+			ROOT = {
+				add_idea = centralization
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = nationalistic_enthusiasm }
+			}
+			ROOT = {
+				add_idea = nationalistic_enthusiasm
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = smithian_economics }
+			}
+			ROOT = {
+				add_idea = smithian_economics
+			}
+		}
+		
+		#Exploration Ideas
+		
+		
+		if = {
+			limit = {
+				FROM = { full_idea_group = exploration_ideas }
+			}
+			ROOT = {
+				add_idea_group = exploration_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = colonial_ventures }
+			}
+			ROOT = {
+				add_idea_group = exploration_ideas
+				remove_idea = quest_for_the_new_world
+				remove_idea = overseas_exploration
+				remove_idea = land_of_opportunity
+				remove_idea = vice_roys
+				remove_idea = free_colonies
+				remove_idea = global_empire
+				add_idea = colonial_ventures
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = quest_for_the_new_world }
+			}
+			ROOT = {
+				add_idea = quest_for_the_new_world
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = overseas_exploration }
+			}
+			ROOT = {
+				add_idea = overseas_exploration
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = land_of_opportunity }
+			}
+			ROOT = {
+				add_idea = land_of_opportunity
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = vice_roys }
+			}
+			ROOT = {
+				add_idea = vice_roys
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = free_colonies }
+			}
+			ROOT = {
+				add_idea = free_colonies
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = global_empire }
+			}
+			ROOT = {
+				add_idea = global_empire
+			}
+		}
+		
+		#Maritime Ideas
+	
+		if = {
+			limit = {
+				FROM = { full_idea_group = maritime_ideas }
+			}
+			ROOT = {
+				add_idea_group = maritime_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = sea_hawks }
+			}
+			ROOT = {
+				add_idea_group = maritime_ideas
+				remove_idea = merchant_marine
+				remove_idea = sheltered_ports
+				remove_idea = grand_navy
+				remove_idea = ships_penny
+				remove_idea = excellent_shipwrights
+				remove_idea = naval_fighting_instruction
+				add_idea = sea_hawks
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = merchant_marine }
+			}
+			ROOT = {
+				add_idea = merchant_marine
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = sheltered_ports }
+			}
+			ROOT = {
+				add_idea = sheltered_ports
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = grand_navy }
+			}
+			ROOT = {
+				add_idea = grand_navy
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = ships_penny }
+			}
+			ROOT = {
+				add_idea = ships_penny
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = excellent_shipwrights }
+			}
+			ROOT = {
+				add_idea = excellent_shipwrights
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = naval_fighting_instruction }
+			}
+			ROOT = {
+				add_idea = naval_fighting_instruction
+			}
+		}
+		
+		#Quality Ideas
+		
+		if = {
+			limit = {
+				FROM = { full_idea_group = quality_ideas }
+			}
+			ROOT = {
+				add_idea_group = quality_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = private_to_marshal }
+			}
+			ROOT = {
+				add_idea_group = quality_ideas
+				remove_idea = quality_education
+				remove_idea = finest_of_horses
+				remove_idea = escort_ships
+				remove_idea = naval_drill
+				remove_idea = copper_bottoms
+				remove_idea = massed_battery
+				add_idea = private_to_marshal
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = quality_education }
+			}
+			ROOT = {
+				add_idea = quality_education
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = finest_of_horses }
+			}
+			ROOT = {
+				add_idea = finest_of_horses
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = escort_ships }
+			}
+			ROOT = {
+				add_idea = escort_ships
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = naval_drill }
+			}
+			ROOT = {
+				add_idea = naval_drill
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = copper_bottoms }
+			}
+			ROOT = {
+				add_idea = copper_bottoms
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = massed_battery }
+			}
+			ROOT = {
+				add_idea = massed_battery
+			}
+		}
+		
+		#Quantity Ideas
+		
+		if = {
+			limit = {
+				FROM = { full_idea_group = quantity_ideas }
+			}
+			ROOT = {
+				add_idea_group = quantity_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = mass_army }
+			}
+			ROOT = {
+				add_idea_group = quantity_ideas
+				remove_idea = the_young_can_serve
+				remove_idea = enforced_service
+				remove_idea = the_old_and_infirm
+				remove_idea = mercenary_contracts
+				remove_idea = garrison_conscription
+				remove_idea = expanded_supply_trains
+				add_idea = mass_army
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = the_young_can_serve }
+			}
+			ROOT = {
+				add_idea = the_young_can_serve
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = enforced_service }
+			}
+			ROOT = {
+				add_idea = enforced_service
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = the_old_and_infirm }
+			}
+			ROOT = {
+				add_idea = the_old_and_infirm
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = mercenary_contracts }
+			}
+			ROOT = {
+				add_idea = mercenary_contracts
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = garrison_conscription }
+			}
+			ROOT = {
+				add_idea = garrison_conscription
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = expanded_supply_trains }
+			}
+			ROOT = {
+				add_idea = expanded_supply_trains
+			}
+		}
+		
+		#Expansion Ideas
+		
+		if = {
+			limit = {
+				FROM = { full_idea_group = expansion_ideas }
+			}
+			ROOT = {
+				add_idea_group = expansion_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = additional_colonists }
+			}
+			ROOT = {
+				add_idea_group = expansion_ideas
+				remove_idea = additional_merchants
+				remove_idea = faster_colonists
+				remove_idea = organised_recruiting
+				remove_idea = additional_diplomats
+				remove_idea = improved_shipyards
+				remove_idea = competetive_merchants
+				add_idea = additional_colonists
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = additional_merchants }
+			}
+			ROOT = {
+				add_idea = additional_merchants
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = faster_colonists }
+			}
+			ROOT = {
+				add_idea = faster_colonists
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = organised_recruiting }
+			}
+			ROOT = {
+				add_idea = organised_recruiting
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = additional_diplomats }
+			}
+			ROOT = {
+				add_idea = additional_diplomats
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = improved_shipyards }
+			}
+			ROOT = {
+				add_idea = improved_shipyards
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = competetive_merchants }
+			}
+			ROOT = {
+				add_idea = competetive_merchants
+			}
+		}
+
+		#Administrative Ideas
+		
+		if = {
+			limit = {
+				FROM = { full_idea_group = administrative_ideas }
+			}
+			ROOT = {
+				add_idea_group = administrative_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = organised_mercenary_payment }
+			}
+			ROOT = {
+				add_idea_group = administrative_ideas
+				remove_idea = adaptability
+				remove_idea = benefits_for_mercenaries
+				remove_idea = bookkeeping
+				remove_idea = organised_mercenary_recruitment
+				remove_idea = administrative_efficiency_idea
+				remove_idea = civil_servants
+				add_idea = organised_mercenary_payment
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = adaptability }
+			}
+			ROOT = {
+				add_idea = adaptability
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = benefits_for_mercenaries }
+			}
+			ROOT = {
+				add_idea = benefits_for_mercenaries
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = bookkeeping }
+			}
+			ROOT = {
+				add_idea = bookkeeping
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = organised_mercenary_recruitment }
+			}
+			ROOT = {
+				add_idea = organised_mercenary_recruitment
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = administrative_efficiency_idea }
+			}
+			ROOT = {
+				add_idea = administrative_efficiency_idea
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = civil_servants }
+			}
+			ROOT = {
+				add_idea = civil_servants
+			}
+		}
+
+		#Humanist Ideas
+		
+		
+		if = {
+			limit = {
+				FROM = { full_idea_group = humanist_ideas }
+			}
+			ROOT = {
+				add_idea_group = humanist_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = tolerance_idea }
+			}
+			ROOT = {
+				add_idea_group = humanist_ideas
+				remove_idea = local_traditions
+				remove_idea = ecumenism
+				remove_idea = indirect_rule
+				remove_idea = cultural_ties
+				remove_idea = benevolence
+				remove_idea = humanist_tolerance
+				add_idea = tolerance_idea
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = local_traditions }
+			}
+			ROOT = {
+				add_idea = local_traditions
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = ecumenism }
+			}
+			ROOT = {
+				add_idea = ecumenism
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = indirect_rule }
+			}
+			ROOT = {
+				add_idea = indirect_rule
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = cultural_ties }
+			}
+			ROOT = {
+				add_idea = cultural_ties
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = benevolence }
+			}
+			ROOT = {
+				add_idea = benevolence
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = humanist_tolerance }
+			}
+			ROOT = {
+				add_idea = humanist_tolerance
+			}
+		}
+		
+		#Influence Ideas
+			
+		if = {
+			limit = {
+				FROM = { full_idea_group = influence_ideas }
+			}
+			ROOT = {
+				add_idea_group = influence_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = tribute_system }
+			}
+			ROOT = {
+				add_idea_group = influence_ideas
+				remove_idea = establish_cadet_branches
+				remove_idea = integrated_elites
+				remove_idea = state_propaganda
+				remove_idea = diplomatic_influence
+				remove_idea = postal_service
+				remove_idea = marcher_lords
+				add_idea = tribute_system
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = establish_cadet_branches }
+			}
+			ROOT = {
+				add_idea = establish_cadet_branches
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = integrated_elites }
+			}
+			ROOT = {
+				add_idea = integrated_elites
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = state_propaganda }
+			}
+			ROOT = {
+				add_idea = state_propaganda
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = diplomatic_influence }
+			}
+			ROOT = {
+				add_idea = diplomatic_influence
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = postal_service }
+			}
+			ROOT = {
+				add_idea = postal_service
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = marcher_lords }
+			}
+			ROOT = {
+				add_idea = marcher_lords
+			}
+		}
+		
+		#Naval Ideas
+		
+		if = {
+			limit = {
+				FROM = { full_idea_group = naval_ideas }
+			}
+			ROOT = {
+				add_idea_group = naval_ideas
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = boarding_parties }
+			}
+			ROOT = {
+				add_idea_group = naval_ideas
+				remove_idea = improved_rams
+				remove_idea = naval_cadets
+				remove_idea = naval_glory
+				remove_idea = press_gangs
+				remove_idea = oak_forests_for_ships
+				remove_idea = superior_seamanship
+				add_idea = boarding_parties
+			}
+		}
+		if = {
+			limit = {
+				FROM = { has_idea = improved_rams }
+			}
+			ROOT = {
+				add_idea = improved_rams
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = naval_cadets }
+			}
+			ROOT = {
+				add_idea = naval_cadets
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = naval_glory }
+			}
+			ROOT = {
+				add_idea = naval_glory
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = press_gangs }
+			}
+			ROOT = {
+				add_idea = press_gangs
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = oak_forests_for_ships }
+			}
+			ROOT = {
+				add_idea = oak_forests_for_ships
+			}
+		}
+
+		if = {
+			limit = {
+				FROM = { has_idea = superior_seamanship }
+			}
+			ROOT = {
+				add_idea = superior_seamanship
+			}
+		}
+	}
+}

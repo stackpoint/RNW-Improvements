@@ -1,0 +1,167 @@
+
+#Form the Haudenosaunee League
+
+country_decisions = {
+
+	haudenosaunee_league_nation = {
+		major = yes
+		potential = {
+			is_nomad = no
+			is_random_new_world = yes
+			religion = totemism
+			technology_group = high_american
+			is_subject = no
+			is_vassal = no
+		}
+		allow = {
+			OR = {
+				vassal = 8
+				num_of_cities = 30
+			}
+			religion = totemism
+			technology_group = high_american
+			NOT = { exists = HDL }
+		}
+		effect = {
+			custom_tooltip = "Form The Haudenosaunee League"
+			custom_tooltip = "The Haudenosaunee League gains a permanent claim on every non-empty Totemist province with the High American technology group."
+			custom_tooltip = "All states will have to be re-created after the decision is taken, but no cores will be lost. All armies and navies will be deleted. Regiments and navies equal to 80% of your force limit will be generated in the capital and in coastal provinces (if any exist).Treasury will be set to $250."
+			hidden_effect = {
+				every_country = {
+						limit = {
+							is_subject_of = PREV #Here PREV is the nation becoming the empire
+						}
+						PREV = { inherit = PREV } #First prev is the proto-empire, second is the subject nation
+					}
+					every_core_province = { #Cedes all provinces but the capital
+						limit = {
+							is_capital = no
+						}
+						cede_province = HDL
+						add_core = HDL
+					}
+					
+				HDL = { country_event = { id = idea_updater.1 } }
+				
+				every_province = {
+					limit = {
+						has_discovered = ROOT
+					}
+					discover_country = HDL #tag of the released country
+				}
+				
+				if = {
+					limit = {
+						ai = no
+					}
+					switch_tag = HDL #Becomes the empire (player)
+				}
+				if = {
+					limit = {
+						ai = yes
+					}
+					change_tag = HDL #Becomes the empire (AI)
+				}	
+				FROM = {country_event = { id = rnw_empire.4 }}
+				HDL = {
+					change_technology_group = high_american
+					change_government = oligarchic_republic
+					set_government_rank = 3
+					
+					every_core_province = { #Because the event gives 50 autonomy to all provinces.
+						limit = {
+						}
+						add_local_autonomy = -50
+					}
+				}
+						
+				if = {
+					limit = {
+						is_part_of_hre = yes
+						is_elector = no
+					}
+					every_owned_province = {
+						limit = {
+							is_part_of_hre = yes
+						}
+						set_in_empire = no
+					}
+				}
+
+				add_country_modifier = {
+					name = "centralization_modifier"
+					duration = 7300
+				}
+				every_province = {
+					limit = {
+						is_empty = no
+						owner = { 
+							religion = totemism
+							technology_group = high_american
+						}
+					}
+					add_permanent_claim = HDL
+				}
+				every_neighbor_country = { HDL = { discover_country = PREV} } #Discovers the neighbours
+				every_neighbor_country = { every_neighbor_country = { HDL = { discover_country = PREV} } } #And their neigbours.
+
+				add_prestige = 50
+				add_treasury = 200
+				add_republican_tradition = 1.0
+				every_owned_province = {			#Removes autonomy boost from inheritance.
+					limit = {}
+					add_local_autonomy = -50
+				}
+				#Unit Updater
+				if = {
+					limit = {
+						NOT = { mil_tech = 6 }	#When North Americans get calvalry
+					}
+					capital_scope = {
+						build_to_forcelimit = {	#Percentages multiplied by 5, since forcelimit is lower before states are created.
+							infantry = 4.0		#80% of post-state making forcelimit
+						}
+					}
+				}
+				if = {
+					limit = {
+						mil_tech = 6	#When North Americans get calvalry
+						NOT = { mil_tech = 7 } #But before they get arty
+					}
+					capital_scope = {
+						build_to_forcelimit = {	#Percentages multiplied by 5, since forcelimit is lower before states are created.
+							infantry = 3.0		#60% of post-state making forcelimit
+							cavalry = 1.0		#20%
+						}
+					}
+				}
+				if = {
+					limit = {
+						mil_tech = 7	#When North Americans get calvalry and arty
+					}
+					capital_scope = {
+						build_to_forcelimit = {	#Percentages multiplied by 5, since forcelimit is lower before states are created.
+							infantry = 2.0		
+							cavalry = 0.5
+							artillery = 1.5
+						}
+					}
+				}
+				random_owned_province = {
+					limit = {
+						has_port = yes
+					}
+					build_to_forcelimit = {
+						heavy_ship = 1.5
+						light_ship = 2.5
+						transport = 1.0
+					}
+				}
+			}
+			country_event = { id = ideagroups.1 } #Swap Ideas
+		}
+		ai_will_do = {
+				factor = 5
+		}
+	}
+}

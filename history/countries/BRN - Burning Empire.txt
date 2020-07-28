@@ -1,0 +1,7 @@
+government = monarchy
+primary_culture = inca
+religion = inti
+technology_group = high_american
+unit_type = south_american
+capital = 1992 #Nauru (temporary)
+

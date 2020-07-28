@@ -1,0 +1,76 @@
+#RNW Nations
+YNZ_ideas = {
+	start = {
+		global_tax_modifier = 0.10
+		production_efficiency = 0.15
+	}
+	bonus = {
+		core_creation = -0.15
+	}
+	
+	trigger = {
+		tag = YNZ
+	}
+	free = yes
+	
+	ynz_imperial_cartog = {
+		may_explore = yes
+	}
+	ynz_trade_winds = {
+		trade_range_modifier = 0.30
+	}
+	ynz_colonial_bureaucracy ={
+		development_cost = -0.20
+	}
+	ynz_renew_the_mandate = {
+		republican_tradition = 0.5
+		global_unrest = -2
+	}
+	ynz_imperial_seal = {
+		trade_steering = 0.20
+	}
+	ynz_beyond_the_new_world = {
+		range = 0.25
+	}
+	ynz_merchants_of_the_new_world = {
+		global_trade_power = 0.20
+	}
+}
+
+VIN_ideas = {
+	start = {
+		privateer_efficiency = 0.25
+		may_perform_slave_raid = yes
+	}
+	bonus = {
+		heavy_ship_power = 0.15
+	}
+	
+	trigger = {
+		tag = VIN
+	}
+	free = yes
+	
+	vin_viking_raiders = {
+		loot_amount = 0.25
+	}
+	vin_longships = {
+		naval_forcelimit_modifier = 0.3
+		global_sailors_modifier = 0.25
+	}
+	vin_drekkar = {
+		naval_morale = 0.20
+	}
+	vin_leif_legacy = {
+		may_explore = yes
+	}
+	vin_berserkers = {
+		infantry_power = 0.1
+	}
+	vin_old_gods = {
+		global_missionary_strength = 0.01
+	}
+	vin_runestones = {
+		prestige_decay = -0.01
+	}
+}
