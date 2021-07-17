@@ -261,11 +261,11 @@ cloth = {
 		}
 		modifier = {
 			factor = 0
-			NOT = { development = 18 }
+			NOT = { development_discounting_tribal = 18 }
 		}
 		modifier = {
 			factor = 2.0
-			development = 22
+			development_discounting_tribal = 22
 		}
 	}
 }
@@ -378,6 +378,12 @@ fur = {
 			factor = 2.5
 			has_winter = severe_winter
 			NOT = { has_terrain = glacier }
+		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
+			}
 		}
 	}
 }
@@ -823,6 +829,12 @@ slaves = {
 			factor = 0.5
 			region = south_africa_region
 		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
+			}
+		}
 	}
 }
 
@@ -898,6 +910,12 @@ ivory = {
 			is_random_new_world = yes 				# My spawn settings for RNW savanna. 
 			factor = 2.00
 			has_terrain = savannah
+		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
+			}
 		}
 	}
 }
@@ -996,6 +1014,12 @@ tea = {
 				area = west_sao_paolo_area  #Yerba Mate
 			}
 		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
+			}
+		}
 	}
 }
 
@@ -1029,7 +1053,13 @@ chinaware = {
 		}
 		modifier = {
 			factor = 0
-			NOT = { development = 8 }
+			NOT = { development_discounting_tribal = 8 }
+		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
+			}
 		}
 	}
 }
@@ -1102,6 +1132,19 @@ spices = {
 			continent = new_world 
 			NOT = { has_climate = tropical }
 		}
+		modifier = {
+			factor = 0
+			OR = {
+				area = molluca_area
+				area = spice_islands_area
+			}
+		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
+			}
+		}
 	}
 }
 
@@ -1160,6 +1203,12 @@ coffee = {
 			is_random_new_world = yes
 			continent = new_world #Always in RNW
 			NOT = { has_climate = tropical }
+		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
+			}
 		}
 	}
 }
@@ -1254,6 +1303,12 @@ cotton = {
 				region = southeast_america_region
 			}
 		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
+			}
+		}
 	}
 }
 
@@ -1312,6 +1367,12 @@ sugar = {
 				area = suriname_area
 			}
 		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
+			}
+		}
 	}
 }
 
@@ -1338,6 +1399,7 @@ tobacco = {
 			NOT = { region = rio_grande_region }
 			NOT = { region = brazil_region }
 			NOT = { region = carribeans_region }
+			NOT = { region = australia_region }
 			NOT = { area = appalachia_area }
 			NOT = { area = south_appalachia_area }
 		}
@@ -1366,6 +1428,16 @@ tobacco = {
 			OR = {
 				region = northeast_america_region
 				region = southeast_america_region
+			}
+		}
+		modifier = {
+			factor = 0.2
+			region = australia_region
+		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
 			}
 		}
 	}
@@ -1473,7 +1545,13 @@ silk = {
 				region = deccan_region
 				region = coromandel_region
 			}
-			development = 20
+			development_discounting_tribal = 20
+		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
+			}
 		}
 	}
 }
@@ -1517,6 +1595,12 @@ dyes = {
 			NOT = { region = mexico_region }
 			NOT = { region = carribeans_region }
 		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
+			}
+		}
 	}
 }
 
@@ -1549,6 +1633,12 @@ tropical_wood = {
 			region = malaya_region
 			region = moluccas_region
 			region = indonesia_region
+		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
+			}
 		}
 	}
 }
@@ -1686,6 +1776,12 @@ incense = {
 			factor = 1.25
 			region = arabia_region
 		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
+			}
+		}
 	}
 }
 
@@ -1705,11 +1801,11 @@ glass = {
 		}
 		modifier = {
 			factor = 0
-			NOT = { development = 18 }
+			NOT = { development_discounting_tribal = 18 }
 		}
 		modifier = {
 			factor = 2.0
-			development = 22
+			development_discounting_tribal = 22
 		}
 	}
 }
@@ -1730,11 +1826,11 @@ paper = {
 		}
 		modifier = {
 			factor = 0
-			NOT = { development = 18 }
+			NOT = { development_discounting_tribal = 18 }
 		}
 		modifier = {
 			factor = 2.0
-			development = 22
+			development_discounting_tribal = 22
 		}
 	}
 }
@@ -1827,6 +1923,7 @@ gems = {
 		modifier = {
 			factor = 0
 			NOT = { has_terrain = coastline }
+			NOT = { region = australia_region }
 			continent = oceania #Pearls
 		}
 		modifier = {
@@ -1853,6 +1950,15 @@ gems = {
 			OR = {
 				area = diamantina_area
 				area = bogota_area
+				area = murray_river_are #Opal
+			}
+		}
+		modifier = {
+			factor = 2.0
+			OR = {
+				province_id = 1093 #Opal
+				province_id = 2736 #Opal
+				province_id = 4862 #Opal
 			}
 		}
 		modifier = {
@@ -1879,6 +1985,12 @@ gems = {
 			factor = 1.5
 			normal_or_historical_nations = no
 		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
+			}
+		}
 	}
 }
 
@@ -1887,11 +1999,11 @@ coal = {
 	is_latent = yes
 	is_valuable = yes
 
-	rnw_latent_chance = 7 # Kind of on average how many provinces we want to spawn with it
+	rnw_latent_chance = 15 # Kind of on average how many provinces we want to spawn with it
 	
 	trigger = {
 		OR = {
-			development = 20
+			development_discounting_tribal = 20
 			owner = { innovativeness = 20 }
 		}
 		provincial_institution_progress = {
@@ -1914,7 +2026,64 @@ coal = {
 	}
 }
 
-
+cloves = {
+	color = { 1.0 0.5 0.85 }
+	modifier = {
+		trade_efficiency = 0.05
+	}
+	province = {
+		province_trade_power_modifier = 0.2
+	}
+	chance = {
+		factor = 2
+		modifier = {							# Condition for regular world
+			factor = 0
+			is_random_new_world = no
+			NOT = {
+				OR = {
+					area = molluca_area
+					area = spice_islands_area
+				}
+			}
+		}
+		modifier = {							# Condition for rnw
+			factor = 0
+			is_random_new_world = yes
+			NOT = {
+				OR = {
+					area = molluca_area
+					area = spice_islands_area
+					continent = new_world
+				}
+			}
+		}
+		modifier = {							# Set to base game modifier in the spice islands and such
+			factor = 75
+			OR = {
+				area = molluca_area
+				area = spice_islands_area
+			}
+		}
+		modifier = {
+			factor = 2.0
+			FROM = {
+				has_country_flag = encourage_cash_crops_flag
+			}
+		}
+		modifier = { 								# Restricts its RNW spawning to tropical areas
+			factor = 0
+			is_random_new_world = yes
+			continent = new_world 
+			NOT = { has_climate = tropical }
+		}
+		modifier = { 								# Reduces chance for RNW spawn a bit further, as they should be quite rare
+			factor = 0.5
+			is_random_new_world = yes
+			continent = new_world
+			has_climate = tropical
+		}
+	}
+}
 
 unknown = {
 	color = { 0.5 0.5 0.5 }
