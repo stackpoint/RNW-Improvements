@@ -7,5 +7,5 @@ tags={
 	"Trade"
 }
 picture="rnw_improvements_updated.png"
-remote_file_id="602251342"
-supported_version="1.28.*.*"
+supported_version="1.31.*.*"
+path="mod/RNW-Improvements"
